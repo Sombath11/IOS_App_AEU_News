@@ -1,0 +1,318 @@
+ion-toolbar {
+  --background: #ffffff !important;
+  --min-height: 56px;
+  ion-icon {
+    font-size: 24px;  
+    color: #6c757d !important;
+  }
+  ion-button{
+    font-size: 15px;  
+
+  }
+}
+
+
+
+ion-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.storage-content {
+  --background: #f5f5f7;
+}
+
+.storage-container {
+  padding-bottom: 24px;
+}
+
+// Header Section
+.header-section {
+  padding: 20px 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+// Storage Section
+.storage-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 12px 0;
+  padding-left: 8px;
+
+  &.danger {
+    color: #dc2626;
+  }
+}
+
+// Storage Card
+.storage-card {
+  background: linear-gradient(135deg, #1152d4 0%, #0e44b0 100%);
+  border-radius: 16px;
+  padding: 20px;
+  color: #ffffff;
+
+  .storage-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    .storage-icon {
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .storage-info {
+    .storage-stats {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      .storage-used {
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .storage-total {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        align-self: flex-end;
+      }
+    }
+
+    .storage-progress {
+      --background: rgba(255, 255, 255, 0.2);
+      --progress-background: #ffffff;
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .storage-breakdown {
+      display: flex;
+      justify-content: space-between;
+
+      .breakdown-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .breakdown-label {
+          font-size: 12px;
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        .breakdown-value {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+// Data Usage Card
+.data-usage-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  .usage-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .usage-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .usage-icon {
+        font-size: 20px;
+
+        &.wifi {
+          color: #1152d4;
+        }
+
+        &.mobile {
+          color: #16a34a;
+        }
+      }
+
+      .usage-label {
+        font-size: 14px;
+        color: #6b7280;
+      }
+    }
+
+    .usage-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+  }
+
+  .usage-divider {
+    width: 1px;
+    height: 40px;
+    background: #e5e7eb;
+    margin: 0 16px;
+  }
+}
+
+// Settings Card
+.settings-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.setting-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  --background: #ffffff;
+  --border-color: #f0f0f0;
+  --min-height: 64px;
+
+  .item-icon {
+    font-size: 20px;
+    color: #1152d4;
+    margin-right: 12px;
+    width: 24px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 2px 0;
+  }
+
+  p {
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  ion-toggle {
+    --background: #e5e7eb;
+    --background-checked: #1152d4;
+    --handle-background: #ffffff;
+    --handle-background-checked: #ffffff;
+    --handle-width: 24px;
+    --handle-height: 24px;
+    --handle-border-radius: 50%;
+    --handle-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-action {
+  padding: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.clear-cache-btn {
+  --border-color: #fca5a5;
+  --color: #dc2626;
+  --border-radius: 12px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+
+  ion-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+}
+
+// Danger Card
+.danger-card {
+  border: 1px solid #fee2e2;
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+
+    .danger-icon {
+      font-size: 22px;
+      color: #dc2626;
+      flex-shrink: 0;
+    }
+
+    .card-info {
+      flex: 1;
+
+      h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #dc2626;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        font-size: 13px;
+        color: #9ca3af;
+        margin: 0;
+      }
+    }
+  }
+
+  .clear-all-btn {
+    --border-color: #fca5a5;
+    --color: #dc2626;
+    --border-radius: 0 0 16px 16px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 16px 16px 16px;
+    width: calc(100% - 32px);
+  }
+}
+
+// Save Button
+.save-btn {
+  --color: #1152d4;
+  --font-weight: 600;
+}

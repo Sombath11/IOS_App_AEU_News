@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Event Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="shareEvent()">
+        <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="event-detail-content">
+  <!-- Event Header Image -->
+  <div class="event-header">
+    <img [src]="event.image" [alt]="event.title" class="header-image" />
+    <div class="category-badge">{{ event.category }}</div>
+  </div>
+
+  <!-- Event Content -->
+  <div class="event-body">
+    <h1 class="event-title">{{ event.title }}</h1>
+    <p class="university-name">{{ event.university }}</p>
+
+    <!-- Event Info Cards -->
+    <div class="event-info-list">
+      <div class="info-row">
+        <div class="icon-circle">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">{{ event.date }}</span>
+          <span class="info-subtitle">{{ event.dateSubtitle }}</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon-circle">
+          <ion-icon name="time-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">{{ event.time }}</span>
+          <span class="info-subtitle">{{ event.timeSubtitle }}</span>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="icon-circle">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+        <div class="info-content">
+          <span class="info-label">{{ event.location }}</span>
+          <span class="info-subtitle">{{ event.locationSubtitle }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About the Event -->
+    <div class="section">
+      <h2 class="section-title">About the Event</h2>
+      <p class="description" [innerHTML]="event.description"></p>
+    </div>
+
+    <!-- Featured Speakers -->
+    <div class="section" *ngIf="event.speakers && event.speakers.length > 0">
+      <h2 class="section-title">Featured Speakers</h2>
+      <div class="speakers-list">
+        <div class="speaker-item" *ngFor="let speaker of event.speakers">
+          <div class="speaker-avatar">
+            <img [src]="speaker.image" [alt]="speaker.name" />
+          </div>
+          <span class="speaker-name">{{ speaker.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Button -->
+  <div class="action-section">
+    <ion-button expand="block" class="register-btn" (click)="registerNow()">
+      Register Now
+    </ion-button>
+  </div>
+
+  <!-- Bottom Tab Navigation -->
+  <div class="bottom-tabs">
+    <div class="tab-item" (click)="navigateTo('home')">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </div>
+    <div class="tab-item active" (click)="navigateTo('events')">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Events</span>
+    </div>
+    <div class="tab-item" (click)="navigateTo('alerts')">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <span>Alerts</span>
+    </div>
+    <div class="tab-item" (click)="navigateTo('profile')">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </div>
+  </div>
+</ion-content>

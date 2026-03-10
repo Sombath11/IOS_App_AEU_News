@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Academic Records</ion-title>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="records-content">
+  <div class="records-container">
+    <!-- Student Summary -->
+    <div class="summary-card">
+      <div class="summary-header">
+        <div class="student-avatar">
+          <span>AJ</span>
+        </div>
+        <div class="student-info">
+          <h2>Alex Johnson</h2>
+          <p>Computer Science | Student ID: 20240915</p>
+        </div>
+      </div>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">3.8</span>
+          <span class="stat-label">GPA</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">Year 3</span>
+          <span class="stat-label">Level</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">120</span>
+          <span class="stat-label">Credits</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semester Results -->
+    <div class="section">
+      <h2 class="section-title">Semester Results</h2>
+      <div class="semester-list">
+        @for (semester of semesters; track semester.id) {
+          <div class="semester-card" (click)="viewSemesterDetails(semester)">
+            <div class="semester-header">
+              <h3>{{ semester.name }}</h3>
+              <span class="semester-gpa" [ngClass]="getGpaClass(semester.gpa)">GPA: {{ semester.gpa }}</span>
+            </div>
+            <div class="semester-details">
+              <span>{{ semester.credits }} credits</span>
+              <span>{{ semester.courses }} courses</span>
+              <span class="semester-status" [ngClass]="semester.status">{{ semester.status }}</span>
+            </div>
+            <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Transcripts -->
+    <div class="section">
+      <h2 class="section-title">Transcripts</h2>
+      <div class="transcript-list">
+        @for (transcript of transcripts; track transcript.id) {
+          <div class="transcript-item" (click)="downloadTranscript(transcript)">
+            <div class="transcript-icon">
+              <ion-icon name="document-text-outline"></ion-icon>
+            </div>
+            <div class="transcript-content">
+              <h3>{{ transcript.title }}</h3>
+              <p>{{ transcript.date }}</p>
+            </div>
+            <ion-icon name="download-outline" class="download-icon"></ion-icon>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</ion-content>

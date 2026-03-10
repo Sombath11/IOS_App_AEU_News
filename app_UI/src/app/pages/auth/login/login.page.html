@@ -1,0 +1,100 @@
+<ion-content class="login-content">
+  <div class="login-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="icon-wrapper">
+        <img src="../../../../assets/logo.png" alt="">
+      </div>
+      <h1 class="page-title">AEU News</h1>
+      <p class="page-subtitle">Welcome back to the Student Portal</p>
+    </div>
+
+    <!-- Login Form -->
+    <div class="form-section">
+      <form (ngSubmit)="onLogin()">
+        <!-- Email Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Email or Student ID</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="email"
+              name="email"
+              placeholder="student@aeu.edu.kh or AEU001234"
+              type="text"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Password Field -->
+        <div class="input-wrapper">
+          <div class="password-header">
+            <label class="input-label">Password</label>
+            <a class="forgot-password-link" (click)="navigateToForgotPassword()">
+              Forgot Password?
+            </a>
+          </div>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="lock-closed-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Enter your Password"
+              [type]="showPassword ? 'text' : 'password'"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+            <ion-icon
+              slot="end"
+              [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+              class="toggle-password"
+              (click)="toggleShowPassword()">
+            </ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- Login Button -->
+        <ion-button expand="block" type="submit" class="login-btn" [disabled]="isLoading">
+          <ion-icon slot="start" name="log-in-outline"></ion-icon>
+          {{ isLoading ? 'Logging in...' : 'Login to Portal' }}
+        </ion-button>
+
+        <!-- Don't have account link -->
+        <div class="ion-padding-top ion-text-center">
+          <ion-text color="medium">
+            <p class="text-small">
+              Don't have an account?
+              <a (click)="navigateToRegistration()" style="cursor: pointer; color: var(--ion-color-primary);">
+                <strong>Register here</strong>
+              </a>
+            </p>
+          </ion-text>
+        </div>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider">
+        <span>OR CONTINUE WITH</span>
+      </div>
+
+      <!-- Social Login Buttons -->
+      <div class="social-login-container">
+        <ion-button fill="outline" class="social-btn google-btn" (click)="loginWithGoogle()">
+          <img src="../../../../assets/icons/google.svg" alt="Google" class="social-icon" />
+          Google
+        </ion-button>
+        <ion-button fill="outline" class="social-btn microsoft-btn" (click)="loginWithMicrosoft()">
+          <img src="../../../../assets/icons/microsoft.svg" alt="Microsoft" class="social-icon" />
+          Microsoft
+        </ion-button>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-section">
+        <p class="copyright-text">© 2024 ASIA E UNIVERSITY NEW PORTAL</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

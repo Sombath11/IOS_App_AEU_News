@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>My Registrations</ion-title>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="registrations-content">
+  <div class="registrations-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="page-title">My Event Registrations</h1>
+      <p class="page-subtitle">View and manage your registered events</p>
+    </div>
+
+    <!-- Registrations List -->
+    @if (registrations.length > 0) {
+      <div class="registrations-list">
+        @for (registration of registrations; track registration.id) {
+          <div class="registration-card" (click)="viewEventDetails(registration.eventId)">
+            <div class="card-header">
+              <div class="event-icon">
+                <ion-icon name="calendar-outline"></ion-icon>
+              </div>
+              <div class="event-info">
+                <h3 class="event-title">{{ registration.eventTitle }}</h3>
+                <p class="event-date">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  {{ registration.eventDate }}
+                </p>
+              </div>
+            </div>
+
+            <div class="card-details">
+              <div class="detail-item">
+                <ion-icon name="time-outline"></ion-icon>
+                <span>{{ registration.eventTime }}</span>
+              </div>
+              <div class="detail-item">
+                <ion-icon name="location-outline"></ion-icon>
+                <span>{{ registration.eventLocation }}</span>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span class="status-badge" [ngClass]="registration.status">
+                {{ registration.status }}
+              </span>
+              <span class="registration-date">Registered: {{ registration.registrationDate }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <!-- Empty State -->
+      <div class="empty-state">
+        <div class="empty-icon">
+          <ion-icon name="calendar-outline"></ion-icon>
+        </div>
+        <h3 class="empty-title">No Registrations Yet</h3>
+        <p class="empty-subtitle">You haven't registered for any events yet. Browse upcoming events to register!</p>
+        <ion-button expand="block" class="browse-btn" (click)="browseEvents()">
+          Browse Events
+        </ion-button>
+      </div>
+    }
+  </div>
+</ion-content>

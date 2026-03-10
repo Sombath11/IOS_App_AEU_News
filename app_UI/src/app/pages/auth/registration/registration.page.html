@@ -1,0 +1,145 @@
+<ion-content class="registration-content">
+  <div class="registration-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="icon-wrapper">
+          <img src="../../../../assets/logo.png" alt="">
+      </div>
+      <h1 class="page-title">Join AEU News</h1>
+      <p class="page-subtitle">Create your account to get started</p>
+    </div>
+
+    <!-- Registration Form -->
+    <div class="form-section">
+      <form (ngSubmit)="onRegister()">
+        <!-- Full Name Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Full Name</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="person-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="name"
+              name="name"
+              placeholder="e.g., John Doe"
+              type="text"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Student ID Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Student ID</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="card-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="studentId"
+              name="studentId"
+              placeholder="e.g., AEU001234"
+              type="text"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Email Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Email</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="mail-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="email"
+              name="email"
+              placeholder="student@aeu.edu.kh"
+              type="email"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Password Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Password (min 8 characters)</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="lock-closed-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="password"
+              name="password"
+              placeholder="••••••••"
+              [type]="showPassword ? 'text' : 'password'"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+            <ion-icon
+              slot="end"
+              [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+              class="toggle-password"
+              (click)="toggleShowPassword()">
+            </ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="input-wrapper">
+          <label class="input-label">Confirm Password</label>
+          <ion-item class="input-item" lines="none">
+            <ion-icon slot="start" name="lock-closed-outline" class="input-icon"></ion-icon>
+            <ion-input
+              [(ngModel)]="confirmPassword"
+              name="confirmPassword"
+              placeholder="••••••••"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              required
+              [disabled]="isLoading">
+            </ion-input>
+            <ion-icon
+              slot="end"
+              [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"
+              class="toggle-password"
+              (click)="toggleShowConfirmPassword()">
+            </ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- Register Button -->
+        <ion-button expand="block" type="submit" class="register-btn" [disabled]="isLoading">
+          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+          {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+        </ion-button>
+
+        <!-- Terms Agreement -->
+        <p class="terms-text">
+          By clicking Register, you agree to our
+          <a class="terms-link">Terms of Service</a> and
+          <a class="terms-link">Privacy Policy</a>.
+        </p>
+      </form>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Login Link -->
+      <div class="login-container">
+        <p class="login-text">Already have an account?</p>
+        <a class="login-link" (click)="navigateToLogin()">
+          Login
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+      <div class="footer-item">
+        <ion-icon name="shield-checkmark-outline" class="footer-icon"></ion-icon>
+        <span>SECURE PORTAL</span>
+      </div>
+      <div class="footer-item">
+        <ion-icon name="shield-outline" class="footer-icon"></ion-icon>
+        <span>PRIVACY FIRST</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

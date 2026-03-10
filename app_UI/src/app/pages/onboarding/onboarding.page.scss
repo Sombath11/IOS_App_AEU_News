@@ -1,0 +1,133 @@
+.onboarding-content {
+  --background: #ffffff;
+}
+
+.onboarding-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.skip-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+}
+
+.skip-btn {
+  --color: var(--ion-color-primary);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.slides-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.illustration-container {
+  margin-bottom: 40px;
+}
+
+.illustration {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.illustration ion-icon {
+  font-size: 96px;
+  color: #ffffff;
+}
+
+.slide-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 16px 0;
+}
+
+.slide-description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.pagination-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 28px;
+  border-radius: 5px;
+  background-color: var(--ion-color-primary);
+}
+
+.action-section {
+  padding: 0 24px 40px 24px;
+}
+
+.next-btn {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --border-radius: 8px;
+  height: 56px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(17, 82, 212, 0.3);
+}
+
+.next-btn:active {
+  transform: scale(0.98);
+}

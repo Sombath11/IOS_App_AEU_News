@@ -1,0 +1,62 @@
+<ion-content class="onboarding-content">
+  <div class="onboarding-container">
+    <!-- Skip Button -->
+    <div class="skip-container">
+      <ion-button fill="clear" class="skip-btn" (click)="skipOnboarding()">
+        Skip
+      </ion-button>
+    </div>
+
+    <!-- Slide Content -->
+    <div class="slides-container">
+      <!-- Slide 1: Stay Updated -->
+      <div class="slide" *ngIf="currentSlide === 0">
+        <div class="slide-content">
+          <div class="illustration-container">
+              <img src="../../../assets/unnamed.png" alt="">
+          </div>
+          <h2 class="slide-title">Stay Updated</h2>
+          <p class="slide-description">
+            Get real-time notifications about important announcements, 
+            grade postings, and campus updates directly to your device.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 2: Events & Alerts -->
+      <div class="slide" *ngIf="currentSlide === 1">
+        <div class="slide-content">
+          <div class="illustration-container">      
+              <img src="../../../assets/event & alert.png" alt="">
+          </div>
+          <h2 class="slide-title">Events & Alerts</h2>
+          <p class="slide-description">
+            Discover university events, workshops, and seminars. 
+            Never miss an opportunity to learn and grow with our event management system.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="pagination-container">
+      <div class="pagination-dots">
+        <div 
+          class="dot" 
+          *ngFor="let dot of [0, 1]" 
+          [class.active]="currentSlide === dot">
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="action-section">
+      <ion-button 
+        expand="block" 
+        class="next-btn"
+        (click)="nextSlide()">
+        {{ currentSlide === 1 ? 'Get Started' : 'Next' }}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

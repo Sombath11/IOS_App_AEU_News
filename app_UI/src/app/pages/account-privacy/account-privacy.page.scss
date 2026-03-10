@@ -1,0 +1,256 @@
+ion-toolbar {
+  --background: #ffffff !important;
+  --min-height: 56px;
+  ion-icon {
+    font-size: 24px;  
+    color: #6c757d !important;
+  }
+  ion-button{
+    font-size: 15px;  
+
+  }
+}
+
+
+
+ion-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.privacy-content {
+  --background: #f5f5f7;
+}
+
+.privacy-container {
+  padding-bottom: 24px;
+}
+
+// Header Section
+.header-section {
+  padding: 20px 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+// Privacy Section
+.privacy-section {
+  padding: 0 16px;
+  margin-bottom: 24px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 12px 0;
+  padding-left: 8px;
+
+  &.danger {
+    color: #dc2626;
+  }
+}
+
+.settings-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.setting-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  --background: #ffffff;
+  --border-color: #f0f0f0;
+  --min-height: 64px;
+
+  .item-icon {
+    font-size: 20px;
+    color: #1152d4;
+    margin-right: 12px;
+    width: 24px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0 0 2px 0;
+  }
+
+  p {
+    font-size: 13px;
+    color: #9ca3af;
+    margin: 0;
+  }
+
+  ion-toggle {
+    --background: #e5e7eb;
+    --background-checked: #1152d4;
+    --handle-background: #ffffff;
+    --handle-background-checked: #ffffff;
+    --handle-width: 24px;
+    --handle-height: 24px;
+    --handle-border-radius: 50%;
+    --handle-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Password Card
+.password-card {
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+
+    .card-icon {
+      font-size: 22px;
+      color: #1152d4;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 0;
+    }
+  }
+
+  .password-form {
+    padding: 16px;
+  }
+
+  .input-group {
+    margin-bottom: 16px;
+
+    &:last-of-type {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+
+    .password-input {
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      ion-input {
+        --padding-start: 16px;
+        --padding-end: 48px;
+        --background: #f9fafb;
+        --border-radius: 12px;
+        --border-color: #e5e7eb;
+        height: 48px;
+        width: 100%;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 16px;
+        font-size: 20px;
+        color: #9ca3af;
+        cursor: pointer;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #6b7280;
+        }
+      }
+    }
+  }
+
+  .change-password-btn {
+    --background: #1152d4;
+    --background-activated: #0e44b0;
+    --border-radius: 12px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+
+    ion-icon {
+      font-size: 18px;
+      margin-right: 8px;
+    }
+  }
+}
+
+// Danger Card
+.danger-card {
+  border: 1px solid #fee2e2;
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+
+    .danger-icon {
+      font-size: 22px;
+      color: #dc2626;
+      flex-shrink: 0;
+    }
+
+    .card-info {
+      flex: 1;
+
+      h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: #dc2626;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        font-size: 13px;
+        color: #9ca3af;
+        margin: 0;
+      }
+    }
+  }
+
+  .delete-account-btn {
+    --border-color: #fca5a5;
+    --color: #dc2626;
+    --border-radius: 0 0 16px 16px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 16px 16px 16px;
+    width: calc(100% - 32px);
+  }
+}
+
+// Save Button
+.save-btn {
+  --color: #1152d4;
+  --font-weight: 600;
+}

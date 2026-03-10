@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="mark-all-btn" (click)="markAllAsRead()">
+        <ion-icon slot="icon-only" name="checkmark-done-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="alerts-content">
+  <!-- Not Logged In State -->
+  @if (!isLoggedIn && !isLoading && !hasError) {
+    <div class="not-logged-in-state">
+      <div class="empty-icon">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+      </div>
+      <h3>Login Required</h3>
+      <p>Please login to view your notifications</p>
+      <ion-button expand="block" (click)="navigateToLogin()">
+        Login
+      </ion-button>
+    </div>
+  }
+
+  <!-- Loading State -->
+  @if (isLoading) {
+    <div class="loading-state">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Loading notifications...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (hasError && !isLoading) {
+    <div class="error-state">
+      <div class="empty-icon">
+        <ion-icon name="warning-outline"></ion-icon>
+      </div>
+      <h3>Error Loading Notifications</h3>
+      <p>Something went wrong</p>
+      <ion-button expand="block" (click)="checkAuth()">
+        Retry
+      </ion-button>
+    </div>
+  }
+
+  <!-- Today Section -->
+  @if (!isLoading && isLoggedIn && todayAlerts.length > 0) {
+    <div class="time-section">
+      <h2 class="time-label">TODAY</h2>
+      <div class="notifications-list">
+        @for (alert of todayAlerts; track alert.id) {
+          <div class="notification-card" [class.unread]="!alert.read" [class.emergency]="alert.isEmergency" (click)="viewAlert(alert)">
+            <div class="notification-border"></div>
+            <div class="notification-content">
+              <div class="notification-icon" [ngClass]="alert.iconClass">
+                <ion-icon [name]="alert.icon"></ion-icon>
+              </div>
+              <div class="notification-body">
+                <div class="notification-header">
+                  <h3 class="notification-title">{{ alert.title }}</h3>
+                  <span class="notification-time">{{ alert.time }}</span>
+                </div>
+                <p class="notification-message">{{ alert.message }}</p>
+              </div>
+              @if (!alert.read) {
+                <div class="unread-dot"></div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Earlier Section -->
+  @if (!isLoading && isLoggedIn && earlierAlerts.length > 0) {
+    <div class="time-section">
+      <h2 class="time-label">EARLIER</h2>
+      <div class="notifications-list">
+        @for (alert of earlierAlerts; track alert.id) {
+          <div class="notification-card" [class.unread]="!alert.read" (click)="viewAlert(alert)">
+            <div class="notification-content">
+              <div class="notification-icon" [ngClass]="alert.iconClass">
+                <ion-icon [name]="alert.icon"></ion-icon>
+              </div>
+              <div class="notification-body">
+                <div class="notification-header">
+                  <h3 class="notification-title">{{ alert.title }}</h3>
+                  <span class="notification-time">{{ alert.time }}</span>
+                </div>
+                <p class="notification-message">{{ alert.message }}</p>
+              </div>
+              @if (!alert.read) {
+                <div class="unread-dot"></div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isLoading && isLoggedIn && allAlerts.length === 0 && !hasError) {
+    <div class="empty-state">
+      <div class="empty-icon">
+        <ion-icon name="notifications-off-outline"></ion-icon>
+      </div>
+      <h3>No Notifications</h3>
+      <p>You're all caught up!</p>
+    </div>
+  }
+</ion-content>

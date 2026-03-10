@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Student Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile-content">
+  <!-- Loading state -->
+  <div *ngIf="loading" class="loading-overlay">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Loading profile...</p>
+  </div>
+
+  <div class="profile-container">
+    <!-- Profile Header Section -->
+    <div class="profile-header-section">
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          <img src="../../../assets/8ce1bd12ef8a9c96603176f2b70d23a6.jpg" [alt]="student.name" />
+        </div>
+        <div class="edit-avatar-btn" (click)="openImagePicker()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </div>
+      </div>
+      <h1 class="student-name">{{ student.name }}</h1>
+      <div class="student-major">
+        <ion-icon name="school-outline"></ion-icon>
+        <span>{{ student.major }}</span>
+      </div>
+      <p class="student-id">Student ID: {{ student.studentId }}</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <span class="stat-value">{{ student.gpa }}</span>
+        <span class="stat-label">GPA</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ student.level }}</span>
+        <span class="stat-label">LEVEL</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">{{ student.credits }}</span>
+        <span class="stat-label">CREDITS</span>
+      </div>
+    </div>
+
+    <!-- General Section -->
+    <div class="menu-section">
+      <h2 class="section-label">GENERAL</h2>
+      <div class="menu-list">
+        <div class="menu-item" (click)="navigateToBookmarks()">
+          <div class="menu-icon bookmarks">
+            <ion-icon name="bookmark"></ion-icon>
+          </div>
+          <div class="menu-content">
+            <h3>My Bookmarks</h3>
+            <p>Saved articles and research papers</p>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item" (click)="navigateToRegistrations()">
+          <div class="menu-icon events">
+            <ion-icon name="calendar"></ion-icon>
+          </div>
+          <div class="menu-content">
+            <h3>Event Registrations</h3>
+            <p>Upcoming workshops and seminars</p>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+
+        <div class="menu-item" (click)="navigateToGrades()">
+          <div class="menu-icon records">
+            <ion-icon name="document-text"></ion-icon>
+          </div>
+          <div class="menu-content">
+            <h3>Academic Record</h3>
+            <p>Transcripts and semester results</p>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Section -->
+    <div class="menu-section">
+      <h2 class="section-label">SYSTEM</h2>
+      <div class="menu-list">
+        <div class="menu-item" (click)="navigateToSettings()">
+          <div class="menu-icon settings">
+            <ion-icon name="settings"></ion-icon>
+          </div>
+          <div class="menu-content">
+            <h3>App Settings</h3>
+            <p>Notifications, theme, and language</p>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout Button -->
+    <div class="logout-section">
+      <div class="logout-btn" (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <span>Logout</span>
+      </div>
+    </div>
+
+    <!-- Version Info -->
+    <p class="version-info">CAMPUS CONNECT V24.1</p>
+  </div>
+</ion-content>
+
+<!-- Image Picker Action Sheet -->
+<ion-action-sheet
+  [isOpen]="isActionSheetOpen"
+  header="Change Profile Picture"
+  [buttons]="actionSheetButtons"
+  (didDismiss)="isActionSheetOpen = false">
+</ion-action-sheet>
+
+<!-- Image Crop/Preview Modal -->
+<ion-modal [isOpen]="isCropModalOpen" (didDismiss)="isCropModalOpen = false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancelCrop()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title>Edit Photo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="saveCrop()" strong>Save</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="crop-modal-content">
+      <div class="crop-container">
+        <image-cropper
+          #imageCropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1"
+          [resizeToWidth]="400"
+          [cropperMinWidth]="200"
+          [onlyScaleDown]="true"
+          [imageQuality]="90"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady($event)"
+          (loadImageFailed)="loadImageFailed()">
+        </image-cropper>
+      </div>
+      
+      <!-- Show preview of cropped image -->
+      <div class="crop-preview" *ngIf="croppedImage">
+        <p class="preview-label">Preview:</p>
+        <img [src]="croppedImage" alt="Cropped preview" class="preview-image" />
+      </div>
+
+      <div class="crop-controls">
+        <ion-segment [(ngModel)]="cropAction" (ionChange)="onSegmentChange($event)">
+          <ion-segment-button value="crop">
+            <ion-icon name="crop-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="rotate">
+            <ion-icon name="refresh-outline"></ion-icon>
+          </ion-segment-button>
+          <ion-segment-button value="flip">
+            <ion-icon name="flip-horizontal-outline"></ion-icon>
+          </ion-segment-button>
+        </ion-segment>
+
+        <div class="action-buttons" *ngIf="cropAction === 'rotate'">
+          <ion-button fill="outline" (click)="rotateLeft()">
+            <ion-icon slot="icon-only" name="reload-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="outline" (click)="rotateRight()">
+            <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <div class="action-buttons" *ngIf="cropAction === 'flip'">
+          <ion-button fill="outline" (click)="flipHorizontal()">
+            <ion-icon slot="icon-only" name="color-palette-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="outline" (click)="flipVertical()">
+            <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

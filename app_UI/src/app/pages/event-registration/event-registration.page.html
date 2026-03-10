@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="header-content">
+      <h1 class="event-title-header">{{ event.title }}</h1>
+      <span class="registration-subtitle">REGISTRATION</span>
+    </div>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="registration-content">
+  <div class="registration-container">
+    <form (ngSubmit)="submitRegistration()">
+      <!-- Student Information Section -->
+      <div class="section">
+        <h2 class="section-title">Student Information</h2>
+        <p class="section-description">Please review your pre-filled details and complete the remaining fields.</p>
+
+        <!-- Student Name (locked) -->
+        <div class="input-group">
+          <label class="input-label">Student Name</label>
+          <ion-item class="input-item locked">
+            <ion-input
+              [value]="registration.fullName"
+              type="text"
+              readonly>
+            </ion-input>
+            <ion-icon name="lock-closed" slot="end" class="lock-icon"></ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- Student ID (locked) -->
+        <div class="input-group">
+          <label class="input-label">Student ID</label>
+          <ion-item class="input-item locked">
+            <ion-input
+              [value]="registration.studentId"
+              type="text"
+              readonly>
+            </ion-input>
+            <ion-icon name="lock-closed" slot="end" class="lock-icon"></ion-icon>
+          </ion-item>
+        </div>
+
+        <!-- Department Dropdown -->
+        <div class="input-group">
+          <label class="input-label">Department</label>
+          <ion-item class="input-item">
+            <ion-select
+              [(ngModel)]="registration.department"
+              name="department"
+              placeholder="Select your department"
+              required>
+              <ion-select-option value="cs">Computer Science</ion-select-option>
+              <ion-select-option value="se">Software Engineering</ion-select-option>
+              <ion-select-option value="it">Information Technology</ion-select-option>
+              <ion-select-option value="ee">Electrical Engineering</ion-select-option>
+              <ion-select-option value="me">Mechanical Engineering</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+
+        <!-- Special Requirements -->
+        <div class="input-group">
+          <label class="input-label">Special Requirements</label>
+          <ion-item class="input-item textarea-item">
+            <ion-textarea
+              [(ngModel)]="registration.requests"
+              name="requests"
+              placeholder="Accessibility needs, dietary requirements, or other requests..."
+              rows="4">
+            </ion-textarea>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" type="submit" class="submit-btn">
+        Confirm Registration
+      </ion-button>
+
+      <!-- Event Details Card -->
+      <div class="event-card">
+        <img [src]="event.image" [alt]="event.title" class="event-card-image" />
+        <div class="event-card-info">
+          <p class="event-card-location">
+            <ion-icon name="location-outline"></ion-icon>
+            {{ event.location }}
+          </p>
+          <p class="event-card-date">
+            <ion-icon name="calendar-outline"></ion-icon>
+            {{ event.date }}
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</ion-content>

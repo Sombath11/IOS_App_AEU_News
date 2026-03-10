@@ -1,0 +1,315 @@
+.settings-content {
+  --background: #f5f5f7;
+}
+
+.settings-container {
+  padding-bottom: 24px;
+}
+
+// Dark Theme Styles - Applied globally via html element
+html.dark-theme,
+html[data-theme="dark"] {
+  .settings-content {
+    --background: #1a1a2e;
+  }
+
+  ion-header {
+    ion-toolbar {
+      --background: #16213e;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+
+      ion-title {
+        color: #e8ecff;
+      }
+
+      ion-button {
+        --color: #e8ecff;
+
+        &:hover {
+          --background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:active {
+          --background: rgba(255, 255, 255, 0.15);
+        }
+      }
+    }
+  }
+
+  .settings-list {
+    background: #2a2a4a;
+  }
+
+  .setting-item {
+    background: #16213e;
+
+    &:active {
+      background: #1f2f5a;
+    }
+
+    .setting-content {
+      h3 {
+        color: #e8ecff;
+      }
+
+      p {
+        color: #6b7280;
+      }
+    }
+
+    .chevron {
+      color: #4b5563;
+    }
+  }
+
+  .logout-item {
+    background: #16213e;
+    border-color: #dc262633;
+
+    &:active {
+      background: #1f2f5a;
+    }
+  }
+
+  .version-text,
+  .made-with {
+    color: #6b7280;
+  }
+}
+
+// Header Styles
+ion-header {
+  ion-toolbar {
+    --background: #ffffff;
+    --border-width: 0;
+    --min-height: 56px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  ion-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  ion-button {
+    --color: #6c757d;
+    --padding-start: 0;
+    --padding-end: 0;
+    margin: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+    &:hover {
+      --background: rgba(0, 0, 0, 0.05);
+    }
+
+    &:active {
+      --background: rgba(0, 0, 0, 0.1);
+    }
+
+    ion-icon {
+      font-size: 22px;
+    }
+  }
+}
+
+// Settings Section
+.settings-section {
+  padding: 20px 16px;
+
+  &:first-of-type {
+    padding-top: 16px;
+  }
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 12px 0;
+  padding-left: 8px;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.setting-item {
+  background: #ffffff;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:active {
+    background: #f9fafb;
+  }
+
+  .setting-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #e8ecff;
+
+    ion-icon {
+      font-size: 22px;
+      color: #1152d4;
+    }
+
+    &.notifications {
+      background: #e8ecff;
+      
+      ion-icon {
+        color: #1152d4;
+      }
+    }
+
+    &.dark-mode {
+      background: #e0e7ff;
+      
+      ion-icon {
+        color: #4f46e5;
+      }
+    }
+
+    &.language {
+      background: #dbeafe;
+      
+      ion-icon {
+        color: #2563eb;
+      }
+    }
+
+    &.privacy {
+      background: #dcfce7;
+      
+      ion-icon {
+        color: #16a34a;
+      }
+    }
+
+    &.storage {
+      background: #fef3c7;
+      
+      ion-icon {
+        color: #d97706;
+      }
+    }
+  }
+
+  .setting-content {
+    flex: 1;
+    min-width: 0;
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin: 0 0 4px 0;
+    }
+
+    p {
+      font-size: 13px;
+      color: #9ca3af;
+      margin: 0;
+    }
+  }
+
+  .chevron {
+    font-size: 20px;
+    color: #d1d5db;
+    flex-shrink: 0;
+  }
+}
+
+// Toggle
+.toggle-input {
+  --background: #e5e7eb;
+  --background-checked: #4f46e5;
+  --handle-background: #ffffff;
+  --handle-background-checked: #ffffff;
+  --handle-width: 24px;
+  --handle-height: 24px;
+  --handle-max-height: auto;
+  --handle-spacing: 2px;
+  --handle-border-radius: 50%;
+  --handle-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  width: 52px;
+  height: 32px;
+}
+
+// Logout Section
+.logout-section {
+  padding: 20px 16px;
+}
+
+.logout-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border: 1px solid #fee2e2;
+
+  &:active {
+    background: #fef2f2;
+  }
+
+  .logout-icon {
+    font-size: 22px;
+    color: #dc2626;
+  }
+
+  .logout-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #dc2626;
+  }
+}
+
+// Version Section
+.version-section {
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.version-text {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0 0 8px 0;
+}
+
+.made-with {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  .heart-icon {
+    font-size: 14px;
+    color: #ef4444;
+  }
+}

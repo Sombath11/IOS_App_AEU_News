@@ -1,0 +1,475 @@
+// Ionic Variables and Theming
+// For more information on customizing these variables, visit:
+// https://ionicframework.com/docs/theming/css-variables
+
+:root {
+  // Primary Color - AEU Blue
+  --ion-color-primary: #1152d4;
+  --ion-color-primary-rgb: 17, 82, 212;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0f48ba;
+  --ion-color-primary-tint: #2963d8;
+
+  // Secondary Color
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  // Success Color
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  // Warning Color
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  // Danger Color
+  --ion-color-danger: #eb445a;
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  // Dark Color
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  // Medium Color
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  // Light Color
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+
+  // Typography - Lexend Font
+  --ion-font-family: 'Lexend', sans-serif;
+}
+
+// Import Lexend Font from Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
+
+// Apply font family globally
+* {
+  font-family: 'Lexend', sans-serif;
+}
+
+// Button Styles - Static, professional with 8px rounding
+ion-button {
+  --border-radius: 8px;
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+// Round Eight button style variant
+.button-round-eight {
+  --border-radius: 8px;
+}
+
+// Solid background button style
+.button-solid {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+}
+
+// App Background
+ion-content {
+  --background: #f8f9fa;
+}
+
+// Card styling
+ion-card {
+  --background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+// Input styling
+ion-input,
+ion-textarea {
+  --background: #ffffff;
+  --border-radius: 8px;
+  --border-color: #e0e0e0;
+  --border-width: 1px;
+  --border-style: solid;
+}
+
+// Toolbar styling
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+// Tab bar styling
+ion-tab-bar {
+  --background: #ffffff;
+  --border-top: 1px solid #e0e0e0;
+}
+
+ion-tab-button {
+  --color: #92949c;
+  --color-selected: var(--ion-color-primary);
+}
+
+// Alert and Toast styling
+ion-alert {
+  --background: #ffffff;
+}
+
+ion-toast {
+  --background: #333333;
+  --border-radius: 8px;
+}
+
+// Loading styling
+ion-loading {
+  --background: #ffffff;
+  --border-radius: 12px;
+}
+
+// Modal styling
+ion-modal {
+  --border-radius: 16px;
+}
+
+// Segment button styling
+ion-segment-button {
+  --color: #92949c;
+  --color-checked: var(--ion-color-primary);
+  --indicator-color: var(--ion-color-primary);
+}
+
+// Chip styling
+ion-chip {
+  --background: rgba(17, 82, 212, 0.1);
+  --color: var(--ion-color-primary);
+}
+
+// Badge styling
+ion-badge {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+// Item styling
+ion-item {
+  --background: #ffffff;
+}
+
+// List styling
+ion-list {
+  --background: #ffffff;
+}
+
+// Searchbar styling
+ion-searchbar {
+  --background: #ffffff;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+// FAB button styling
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+// Progress bar styling
+ion-progress-bar {
+  --background: #e0e0e0;
+  --progress-background: var(--ion-color-primary);
+}
+
+// Spinner styling
+ion-spinner {
+  color: var(--ion-color-primary);
+}
+
+// Skeleton text styling
+ion-skeleton-text {
+  --background: #e0e0e0;
+}
+
+// Refresher styling
+ion-refresher {
+  --color: var(--ion-color-primary);
+}
+
+// Infinite scroll loading styling
+ion-infinite-scroll-content {
+  --text-color: var(--ion-color-primary);
+}
+
+// Backdrop styling
+ion-backdrop {
+  --background: rgba(0, 0, 0, 0.5);
+}
+
+// Header and Footer styling
+ion-header,
+ion-footer {
+  --background: var(--ion-color-primary);
+  --color: #ffffff;
+}
+
+// Title styling
+ion-title {
+  font-weight: 600;
+}
+
+// Label styling
+ion-label {
+  font-weight: 400;
+}
+
+// Text styling
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin: 0;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+// Utility classes
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.text-secondary {
+  color: var(--ion-color-secondary);
+}
+
+.text-success {
+  color: var(--ion-color-success);
+}
+
+.text-warning {
+  color: var(--ion-color-warning);
+}
+
+.text-danger {
+  color: var(--ion-color-danger);
+}
+
+.text-dark {
+  color: var(--ion-color-dark);
+}
+
+.text-medium {
+  color: var(--ion-color-medium);
+}
+
+.text-light {
+  color: var(--ion-color-light);
+}
+
+.bg-primary {
+  background-color: var(--ion-color-primary);
+}
+
+.bg-secondary {
+  background-color: var(--ion-color-secondary);
+}
+
+.bg-success {
+  background-color: var(--ion-color-success);
+}
+
+.bg-warning {
+  background-color: var(--ion-color-warning);
+}
+
+.bg-danger {
+  background-color: var(--ion-color-danger);
+}
+
+.bg-dark {
+  background-color: var(--ion-color-dark);
+}
+
+.bg-light {
+  background-color: var(--ion-color-light);
+}
+
+// Spacing utilities
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+.mt-5 { margin-top: 40px; }
+
+.mb-1 { margin-bottom: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+.mb-5 { margin-bottom: 40px; }
+
+.ml-1 { margin-left: 8px; }
+.ml-2 { margin-left: 16px; }
+.ml-3 { margin-left: 24px; }
+.ml-4 { margin-left: 32px; }
+.ml-5 { margin-left: 40px; }
+
+.mr-1 { margin-right: 8px; }
+.mr-2 { margin-right: 16px; }
+.mr-3 { margin-right: 24px; }
+.mr-4 { margin-right: 32px; }
+.mr-5 { margin-right: 40px; }
+
+.pt-1 { padding-top: 8px; }
+.pt-2 { padding-top: 16px; }
+.pt-3 { padding-top: 24px; }
+.pt-4 { padding-top: 32px; }
+.pt-5 { padding-top: 40px; }
+
+.pb-1 { padding-bottom: 8px; }
+.pb-2 { padding-bottom: 16px; }
+.pb-3 { padding-bottom: 24px; }
+.pb-4 { padding-bottom: 32px; }
+.pb-5 { padding-bottom: 40px; }
+
+.pl-1 { padding-left: 8px; }
+.pl-2 { padding-left: 16px; }
+.pl-3 { padding-left: 24px; }
+.pl-4 { padding-left: 32px; }
+.pl-5 { padding-left: 40px; }
+
+.pr-1 { padding-right: 8px; }
+.pr-2 { padding-right: 16px; }
+.pr-3 { padding-right: 24px; }
+.pr-4 { padding-right: 32px; }
+.pr-5 { padding-right: 40px; }
+
+// Flex utilities
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
+
+// Text alignment
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+// Font weight
+.fw-300 { font-weight: 300; }
+.fw-400 { font-weight: 400; }
+.fw-500 { font-weight: 500; }
+.fw-600 { font-weight: 600; }
+.fw-700 { font-weight: 700; }
+
+// Font size
+.fs-12 { font-size: 12px; }
+.fs-14 { font-size: 14px; }
+.fs-16 { font-size: 16px; }
+.fs-18 { font-size: 18px; }
+.fs-20 { font-size: 20px; }
+.fs-24 { font-size: 24px; }
+.fs-28 { font-size: 28px; }
+.fs-32 { font-size: 32px; }
+
+// Border radius
+.rounded-4 { border-radius: 4px; }
+.rounded-8 { border-radius: 8px; }
+.rounded-12 { border-radius: 12px; }
+.rounded-16 { border-radius: 16px; }
+.rounded-20 { border-radius: 20px; }
+.rounded-full { border-radius: 9999px; }
+
+// Shadow utilities
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-md {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+// Width utilities
+.w-100 { width: 100%; }
+.w-90 { width: 90%; }
+.w-80 { width: 80%; }
+.w-70 { width: 70%; }
+.w-50 { width: 50%; }
+
+// Height utilities
+.h-100 { height: 100%; }
+.h-full { height: 100vh; }
+
+// Position utilities
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+
+// Overflow utilities
+.overflow-hidden { overflow: hidden; }
+.overflow-scroll { overflow: scroll; }
+.overflow-auto { overflow: auto; }
+
+// Display utilities
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+
+// Visibility
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+// Opacity
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: 0.25; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+// Z-index
+.z-1 { z-index: 1; }
+.z-10 { z-index: 10; }
+.z-100 { z-index: 100; }
+.z-1000 { z-index: 1000; }

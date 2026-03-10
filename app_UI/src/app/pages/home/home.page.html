@@ -1,0 +1,123 @@
+<ion-header class="home-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <div class="logo-container">
+        <img src="../../../assets/logo.png" alt="">
+      </div>
+      <div class="app-title">
+        <span>AEU News</span>
+      </div>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="icon-btn" (click)="goToSearch()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="icon-btn notification-btn" (click)="navigateTo('alerts')">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+        <span class="notification-badge"></span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-content">
+  <!-- Welcome Section -->
+  <!-- <div class="welcome-section">
+    <h1 class="welcome-title">Welcome, {{ userName }}</h1>
+    <p class="welcome-subtitle">Bachelor of Computer Science • Year 3</p>
+  </div> -->
+
+  <!-- Featured News Section -->
+  <div class="featured-section">
+    <div class="section-header">
+      <h2 class="section-title">Featured News</h2>
+      <ion-button fill="clear" class="see-all-btn" (click)="viewAllNews()">
+        See All
+      </ion-button>
+    </div>
+
+    <div class="featured-slider">
+      <div class="featured-card" *ngFor="let news of featuredNews" (click)="viewNewsDetail(news)">
+        <img [src]="news.image" [alt]="news.title" />
+        <div class="card-overlay">
+          <ion-chip class="featured-chip" [ngClass]="news.category.toLowerCase()">{{ news.category }}</ion-chip>
+          <h3 class="card-title">{{ news.title }}</h3>
+          <p class="card-description">{{ news.description }}</p>
+        </div>
+      </div>
+      <!-- Loading state -->
+      <div *ngIf="loading && featuredNews.length === 0" class="loading-state">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading featured news...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions-section">
+    <div class="quick-action-item" (click)="navigateTo('schedule')">
+      <div class="action-icon-wrapper">
+        <ion-icon name="calendar-outline" class="action-icon"></ion-icon>
+      </div>
+      <span class="action-label">Schedule</span>
+    </div>
+    <div class="quick-action-item" (click)="navigateTo('grades')">
+      <div class="action-icon-wrapper">
+        <ion-icon name="star-outline" class="action-icon"></ion-icon>
+      </div>
+      <span class="action-label">Grades</span>
+    </div>
+    <div class="quick-action-item" (click)="navigateTo('map')">
+      <div class="action-icon-wrapper">
+        <ion-icon name="map-outline" class="action-icon"></ion-icon>
+      </div>
+      <span class="action-label">Campus Map</span>
+    </div>
+    <div class="quick-action-item" (click)="navigateTo('directory')">
+      <div class="action-icon-wrapper">
+        <ion-icon name="people-outline" class="action-icon"></ion-icon>
+      </div>
+      <span class="action-label">Directory</span>
+    </div>
+  </div>
+
+  <!-- Latest News Section -->
+  <div class="latest-section">
+    <div class="section-header">
+      <h2 class="section-title">Latest News</h2>
+      <ion-button fill="clear" class="filter-btn" (click)="toggleFilterDropdown()">
+        <ion-icon slot="icon-only" name="filter-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Category Filter Chips -->
+    <div class="category-filters">
+      <ion-chip
+        *ngFor="let category of categories"
+        [class.active]="selectedCategory === category"
+        (click)="filterByCategory(category)">
+        {{ category }}
+      </ion-chip>
+    </div>
+
+    <!-- News List -->
+  <div class="news-list">
+    <div class="news-card" *ngFor="let news of filteredNews" (click)="viewNewsDetail(news)">
+      <img [src]="news.image" [alt]="news.title" class="news-image" />
+      <div class="news-content">
+        <span class="news-category-label" [ngClass]="news.category.toLowerCase().replace(' ', '-')">{{ news.category }}</span>
+        <h3 class="news-title">{{ news.title }}</h3>
+        <p class="news-time">
+          <ion-icon name="time-outline"></ion-icon>
+          {{ news.timeAgo }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+    <!-- View All Button -->
+    <ion-button fill="outline" expand="block" class="view-all-news-btn" (click)="viewAllNews()">
+      View All Latest News
+    </ion-button>
+  </div>
+</ion-content>

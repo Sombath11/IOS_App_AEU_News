@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Data & Storage</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveSettings()" class="save-btn">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="storage-content">
+  <div class="storage-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="page-title">Data & Storage</h1>
+      <p class="page-subtitle">Manage your app data and storage settings</p>
+    </div>
+
+    <!-- Storage Overview -->
+    <div class="storage-section">
+      <div class="storage-card">
+        <div class="storage-header">
+          <ion-icon name="server-outline" class="storage-icon"></ion-icon>
+          <h2>Storage Overview</h2>
+        </div>
+        <div class="storage-info">
+          <div class="storage-stats">
+            <span class="storage-used">{{ usedStorage }} MB used</span>
+            <span class="storage-total">of {{ totalStorage }} MB</span>
+          </div>
+          <ion-progress-bar
+            [value]="usedStoragePercent / 100"
+            class="storage-progress">
+          </ion-progress-bar>
+          <div class="storage-breakdown">
+            <div class="breakdown-item">
+              <span class="breakdown-label">Available</span>
+              <span class="breakdown-value">{{ availableStorage }} MB</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-label">Percentage</span>
+              <span class="breakdown-value">{{ storagePercentage }}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data Usage -->
+    <div class="storage-section">
+      <h2 class="section-label">Data Usage</h2>
+      <div class="data-usage-card">
+        <div class="usage-item">
+          <div class="usage-header">
+            <ion-icon name="wifi-outline" class="usage-icon wifi"></ion-icon>
+            <span class="usage-label">Wi-Fi</span>
+          </div>
+          <span class="usage-value">{{ wifiDataUsage }} MB</span>
+        </div>
+        <div class="usage-divider"></div>
+        <div class="usage-item">
+          <div class="usage-header">
+            <ion-icon name="phone-portrait-outline" class="usage-icon mobile"></ion-icon>
+            <span class="usage-label">Mobile Data</span>
+          </div>
+          <span class="usage-value">{{ mobileDataUsage }} MB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cache Settings -->
+    <div class="storage-section">
+      <h2 class="section-label">Cache Settings</h2>
+      <div class="settings-card">
+        <ion-item class="setting-item">
+          <ion-icon name="refresh-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Enable Cache</h3>
+            <p>Store data locally for faster loading</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="cacheEnabled" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="time-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Auto-Clear Cache</h3>
+            <p>Automatically clear old cache data</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="autoClearCache" slot="end" [disabled]="!cacheEnabled"></ion-toggle>
+        </ion-item>
+        <div class="card-action">
+          <ion-button fill="outline" class="clear-cache-btn" (click)="clearCache()">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            Clear Cache (45 MB)
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download Settings -->
+    <div class="storage-section">
+      <h2 class="section-label">Downloads</h2>
+      <div class="settings-card">
+        <ion-item class="setting-item">
+          <ion-icon name="wifi-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Wi-Fi Only Downloads</h3>
+            <p>Only download content over Wi-Fi</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="wifiOnlyDownloads" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="cloud-download-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Auto-Download Updates</h3>
+            <p>Automatically download event updates</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="autoDownloadUpdates" slot="end"></ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- Storage Management -->
+    <div class="storage-section">
+      <h2 class="section-label danger">Storage Management</h2>
+      <div class="settings-card danger-card">
+        <div class="card-header">
+          <ion-icon name="trash-outline" class="danger-icon"></ion-icon>
+          <div class="card-info">
+            <h3>Clear All Data</h3>
+            <p>Remove all app data and reset to defaults</p>
+          </div>
+        </div>
+        <ion-button expand="block" fill="outline" class="clear-all-btn" (click)="clearAllData()">
+          Clear All App Data
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

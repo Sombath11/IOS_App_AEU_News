@@ -1,0 +1,369 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+/* @import '@ionic/angular/css/palettes/dark.system.css'; */
+
+// Custom Dark Mode Styles
+// -----------------------------------------------------
+// These styles apply when the dark-theme class is added to html element
+
+html.dark-theme,
+html[data-theme="dark"] {
+  // Override Ionic's default dark mode colors with custom palette
+  --ion-background-color: #1a1a2e !important;
+  --ion-background-color-rgb: 26, 26, 46 !important;
+
+  --ion-text-color: #ffffff !important;
+  --ion-text-color-rgb: 255, 255, 255 !important;
+
+  --ion-color-base: #1a1a2e !important;
+  --ion-color-base-rgb: 26, 26, 46 !important;
+
+  --ion-step-bar-background: #3a3a5a !important;
+
+  --ion-card-background: #252542 !important;
+  --ion-card-color: #ffffff !important;
+
+  --ion-item-background: #252542 !important;
+  --ion-item-color: #ffffff !important;
+
+  --ion-toolbar-background: #16213e !important;
+  --ion-toolbar-border-color: #3a3a5a !important;
+  --ion-toolbar-color: #e8ecff !important;
+
+  --ion-tab-bar-background: #16213e !important;
+  --ion-tab-bar-border-color: #3a3a5a !important;
+  --ion-tab-bar-color: #e8ecff !important;
+  --ion-tab-bar-color-selected: #ffffff !important;
+
+  --ion-modal-background: #1a1a2e !important;
+
+  --ion-popover-background: #252542 !important;
+  --ion-popover-color: #ffffff !important;
+
+  --ion-toast-background: #252542 !important;
+  --ion-toast-color: #ffffff !important;
+
+  --ion-alert-background: #252542 !important;
+  --ion-alert-color: #ffffff !important;
+
+  --ion-input-background: #252542 !important;
+  --ion-input-color: #ffffff !important;
+  --ion-input-placeholder-color: #8a8aa8 !important;
+
+  --ion-select-background: #252542 !important;
+  --ion-select-color: #ffffff !important;
+  --ion-select-placeholder-color: #8a8aa8 !important;
+
+  --ion-toggle-background: #3a3a5a !important;
+  --ion-toggle-background-checked: #4f46e5 !important;
+
+  --ion-range-background: #3a3a5a !important;
+  --ion-range-background-checked: #4f46e5 !important;
+
+  --ion-segment-button-background: #252542 !important;
+  --ion-segment-button-background-checked: #4f46e5 !important;
+  --ion-segment-button-color-checked: #ffffff !important;
+
+  --ion-searchbar-background: #252542 !important;
+  --ion-searchbar-color: #ffffff !important;
+  --ion-searchbar-placeholder-color: #8a8aa8 !important;
+
+  --ion-chip-background: #3a3a5a !important;
+  --ion-chip-color: #ffffff !important;
+
+  --ion-badge-background: #4f46e5 !important;
+  --ion-badge-color: #ffffff !important;
+
+  --ion-progress-bar-background: #3a3a5a !important;
+  --ion-progress-bar-color: #4f46e5 !important;
+
+  --ion-spinner-color: #4f46e5 !important;
+
+  --ion-skeleton-text-background: #3a3a5a !important;
+
+  --ion-refresher-background: #1a1a2e !important;
+
+  --ion-infinite-scroll-content-color: #8a8aa8 !important;
+
+  --ion-backdrop-background: rgba(0, 0, 0, 0.7) !important;
+
+  // Settings Page dark mode overrides
+  .settings-content {
+    --background: #1a1a2e;
+  }
+
+  .settings-section {
+    .section-label {
+      color: #9ca3af;
+    }
+  }
+
+  .settings-list {
+    background: #2a2a4a;
+  }
+
+  .setting-item {
+    background: #16213e;
+
+    .setting-content {
+      h3 {
+        color: #e8ecff;
+      }
+
+      p {
+        color: #8a8aa8;
+      }
+    }
+
+    .chevron {
+      color: #4b5563;
+    }
+  }
+
+  .logout-item {
+    background: #16213e;
+    border-color: #dc262633;
+
+    .logout-icon,
+    .logout-text {
+      color: #dc2626;
+    }
+  }
+
+  .version-text,
+  .made-with {
+    color: #8a8aa8;
+  }
+
+  // Page-specific dark mode overrides
+  .storage-content {
+    --background: #1a1a2e;
+  }
+
+  .storage-container {
+    .header-section {
+      .page-title {
+        color: #ffffff;
+      }
+      .page-subtitle {
+        color: #8a8aa8;
+      }
+    }
+
+    .storage-section {
+      .section-label {
+        color: #ffffff;
+      }
+      .section-label.danger {
+        color: #eb445a;
+      }
+
+      .storage-card,
+      .data-usage-card,
+      .settings-card {
+        background: #252542;
+        border-color: #3a3a5a;
+
+        .storage-header,
+        .card-header {
+          h2,
+          h3 {
+            color: #ffffff;
+          }
+        }
+
+        .storage-info {
+          .storage-stats {
+            .storage-used,
+            .storage-total {
+              color: #ffffff;
+            }
+          }
+
+          .storage-breakdown {
+            .breakdown-item {
+              .breakdown-label {
+                color: #8a8aa8;
+              }
+              .breakdown-value {
+                color: #ffffff;
+              }
+            }
+          }
+        }
+
+        .usage-item {
+          .usage-header {
+            .usage-label {
+              color: #ffffff;
+            }
+          }
+          .usage-value {
+            color: #ffffff;
+          }
+        }
+
+        .usage-divider {
+          background: #3a3a5a;
+        }
+
+        ion-item {
+          --background: #252542;
+          --color: #ffffff;
+
+          h3 {
+            color: #ffffff;
+          }
+          p {
+            color: #8a8aa8;
+          }
+        }
+
+        .card-info {
+          h3 {
+            color: #ffffff;
+          }
+          p {
+            color: #8a8aa8;
+          }
+        }
+      }
+
+      .danger-card {
+        border-color: rgba(235, 68, 90, 0.3);
+        background: rgba(235, 68, 90, 0.05);
+      }
+    }
+  }
+}
+
+// Search Modal Styles
+// -----------------------------------------------------
+.search-modal {
+  --height: 90%;
+  --border-radius: 16px;
+  
+  &::part(backdrop) {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  &::part(handle) {
+    background-color: #ccc;
+    width: 32px;
+    height: 4px;
+    border-radius: 2px;
+  }
+
+  .search-modal-container {
+    --background: #ffffff;
+  }
+
+  &.dark-theme,
+  :host-context(html.dark-theme) {
+    .search-modal-container {
+      background: #1a1a2e;
+    }
+
+    .search-header {
+      background: #1a1a2e;
+      border-bottom-color: #3a3a5a;
+    }
+
+    .search-input-wrapper {
+      background: #252542;
+    }
+
+    .search-icon {
+      color: #8a8aa8;
+    }
+
+    .search-input {
+      --color: #ffffff;
+      --placeholder-color: #8a8aa8;
+    }
+
+    .close-btn {
+      --color: #8a8aa8;
+    }
+
+    .category-filters {
+      background: #1a1a2e;
+      border-bottom-color: #3a3a5a;
+
+      ion-chip {
+        background: #252542;
+        color: #8a8aa8;
+
+        &.active {
+          background: #4f46e5;
+          color: #ffffff;
+        }
+      }
+    }
+
+    .no-results,
+    .initial-state {
+      color: #8a8aa8;
+
+      .no-results-icon,
+      .initial-icon {
+        color: #3a3a5a;
+      }
+
+      h3 {
+        color: #e8ecff;
+      }
+    }
+
+    .result-item {
+      --background: #1a1a2e;
+      border-bottom-color: #3a3a5a;
+
+      &:active {
+        --background: #252542;
+      }
+    }
+
+    .result-title {
+      color: #ffffff;
+    }
+
+    .result-excerpt {
+      color: #8a8aa8;
+    }
+  }
+}

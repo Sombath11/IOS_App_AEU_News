@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Events
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="userService.isAuthenticated">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Events</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Not Logged In -->
+  <div *ngIf="!userService.isAuthenticated && !loading" class="ion-padding ion-text-center">
+    <ion-icon name="log-in-outline" style="font-size: 64px; color: var(--ion-color-primary);"></ion-icon>
+    <h2>Please Login</h2>
+    <p>Login to view and register for events</p>
+    <ion-button expand="block" (click)="goToLogin()" class="ion-margin-top">
+      <ion-icon slot="start" name="log-in-outline"></ion-icon>
+      Login
+    </ion-button>
+    
+    <ion-card class="ion-margin-top">
+      <ion-card-header>
+        <ion-card-title>Test Account</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Email:</strong> test@example.com</p>
+        <p><strong>Password:</strong> password</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Loading -->
+  @if (loading) {
+    <div style="display: flex; justify-content: center; padding: 40px;">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  } @else if (error) {
+    <!-- Error -->
+    <div style="padding: 20px; text-align: center; color: var(--ion-color-danger);">
+      <p>{{ error }}</p>
+      <p style="font-size: 12px; color: var(--ion-color-medium);">
+        Make sure your Laravel API is running at {{ apiUrl }}
+      </p>
+      <ion-button expand="block" (click)="loadEvents()" class="ion-margin-top">
+        Retry
+      </ion-button>
+    </div>
+  } @else if (events.length === 0) {
+    <!-- No Events -->
+    <div style="padding: 20px; text-align: center; color: var(--ion-color-medium);">
+      <ion-icon name="calendar-outline" style="font-size: 48px;"></ion-icon>
+      <p>No events available</p>
+    </div>
+  } @else {
+    <!-- Events List -->
+    <ion-list>
+      @for (event of events; track event.id) {
+        <ion-item>
+          <ion-card style="width: 100%;">
+            <ion-card-header>
+              <ion-card-title>{{ event.title }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ event.description }}</p>
+              @if (event.location) {
+                <p style="font-size: 12px; color: var(--ion-color-medium); margin-top: 8px;">
+                  <ion-icon name="location-outline" style="vertical-align: middle;"></ion-icon>
+                  {{ event.location }}
+                </p>
+              }
+              <p style="font-size: 12px; color: var(--ion-color-medium); margin-top: 4px;">
+                <ion-icon name="calendar-outline" style="vertical-align: middle;"></ion-icon>
+                {{ formatDate(event.start_date) }}
+              </p>
+              <ion-button expand="block" class="ion-margin-top" size="small">
+                Register
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      }
+    </ion-list>
+  }
+</ion-content>
+
+

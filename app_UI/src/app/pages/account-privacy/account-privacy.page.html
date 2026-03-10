@@ -1,0 +1,166 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Account Privacy</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="savePrivacySettings()" class="save-btn">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="privacy-content">
+  <div class="privacy-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="page-title">Account Privacy</h1>
+      <p class="page-subtitle">Control your privacy and security settings</p>
+    </div>
+
+    <!-- Profile Visibility -->
+    <div class="privacy-section">
+      <h2 class="section-label">Profile Visibility</h2>
+      <div class="settings-card">
+        <ion-item class="setting-item">
+          <ion-icon name="person-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Public Profile</h3>
+            <p>Make your profile visible to others</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="profileVisible" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="mail-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Show Email Address</h3>
+            <p>Display email on your profile</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="showEmail" slot="end" [disabled]="!profileVisible"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="shield-checkmark-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Show Student ID</h3>
+            <p>Display student ID on your profile</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="showStudentId" slot="end" [disabled]="!profileVisible"></ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- Interaction Settings -->
+    <div class="privacy-section">
+      <h2 class="section-label">Interactions</h2>
+      <div class="settings-card">
+        <ion-item class="setting-item">
+          <ion-icon name="chatbubble-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Allow Messages</h3>
+            <p>Receive messages from other students</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="allowMessages" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="eye-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Show Online Status</h3>
+            <p>Let others see when you're online</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="showOnlineStatus" slot="end"></ion-toggle>
+        </ion-item>
+        <ion-item class="setting-item">
+          <ion-icon name="at-outline" slot="start" class="item-icon"></ion-icon>
+          <ion-label>
+            <h3>Allow Tagging</h3>
+            <p>Let others tag you in posts</p>
+          </ion-label>
+          <ion-toggle [(ngModel)]="allowTagging" slot="end"></ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- Change Password -->
+    <div class="privacy-section">
+      <h2 class="section-label">Security</h2>
+      <div class="settings-card password-card">
+        <div class="card-header">
+          <ion-icon name="lock-closed-outline" class="card-icon"></ion-icon>
+          <h3>Change Password</h3>
+        </div>
+        <div class="password-form">
+          <div class="input-group">
+            <label>Current Password</label>
+            <div class="password-input">
+              <ion-input
+                [type]="showCurrentPassword ? 'text' : 'password'"
+                [(ngModel)]="currentPassword"
+                placeholder="Enter current password">
+              </ion-input>
+              <ion-icon
+                [name]="showCurrentPassword ? 'eye-off-outline' : 'eye-outline'"
+                (click)="toggleCurrentPassword()"
+                class="toggle-password">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>New Password</label>
+            <div class="password-input">
+              <ion-input
+                [type]="showNewPassword ? 'text' : 'password'"
+                [(ngModel)]="newPassword"
+                placeholder="Enter new password">
+              </ion-input>
+              <ion-icon
+                [name]="showNewPassword ? 'eye-off-outline' : 'eye-outline'"
+                (click)="toggleNewPassword()"
+                class="toggle-password">
+              </ion-icon>
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Confirm New Password</label>
+            <div class="password-input">
+              <ion-input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                [(ngModel)]="confirmPassword"
+                placeholder="Confirm new password">
+              </ion-input>
+              <ion-icon
+                [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'"
+                (click)="toggleConfirmPassword()"
+                class="toggle-password">
+              </ion-icon>
+            </div>
+          </div>
+          <ion-button expand="block" class="change-password-btn" (click)="changePassword()">
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            Change Password
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="privacy-section">
+      <h2 class="section-label danger">Danger Zone</h2>
+      <div class="settings-card danger-card">
+        <div class="card-header">
+          <ion-icon name="trash-outline" class="danger-icon"></ion-icon>
+          <div class="card-info">
+            <h3>Delete Account</h3>
+            <p>Permanently delete your account and all data</p>
+          </div>
+        </div>
+        <ion-button expand="block" fill="outline" class="delete-account-btn" (click)="deleteAccount()">
+          Delete My Account
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

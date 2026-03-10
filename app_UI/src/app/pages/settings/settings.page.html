@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="settings-content">
+  <div class="settings-container">
+    <!-- Preferences Section -->
+    <div class="settings-section">
+      <h2 class="section-label">PREFERENCES</h2>
+      <div class="settings-list">
+        <!-- Notification Preferences -->
+        <div class="setting-item" (click)="openNotificationPreferences()">
+          <div class="setting-icon notifications">
+            <ion-icon name="notifications"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <h3>Notification Preferences</h3>
+            <p>Email, Push, & SMS</p>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+
+        <!-- Dark Mode -->
+        <div class="setting-item">
+          <div class="setting-icon dark-mode">
+            <ion-icon name="moon"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <h3>Dark Mode</h3>
+          </div>
+          <ion-toggle
+            [checked]="isDarkMode"
+            (ionChange)="onDarkModeToggle($event)"
+            class="toggle-input">
+          </ion-toggle>
+        </div>
+
+        <!-- Language -->
+        <div class="setting-item" (click)="openLanguageSelector()">
+          <div class="setting-icon language">
+            <ion-icon name="language"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <h3>Language</h3>
+            <p>{{ selectedLanguage }}</p>
+          </div>
+          <ion-icon name="chevron-down" class="chevron"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy & Security Section -->
+    <div class="settings-section">
+      <h2 class="section-label">PRIVACY & SECURITY</h2>
+      <div class="settings-list">
+        <!-- Account Privacy -->
+        <div class="setting-item" (click)="openAccountPrivacy()">
+          <div class="setting-icon privacy">
+            <ion-icon name="shield-checkmark"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <h3>Account Privacy</h3>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+
+        <!-- Data & Storage -->
+        <div class="setting-item" (click)="openDataStorage()">
+          <div class="setting-icon storage">
+            <ion-icon name="server"></ion-icon>
+          </div>
+          <div class="setting-content">
+            <h3>Data & Storage</h3>
+          </div>
+          <ion-icon name="chevron-forward" class="chevron"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="logout-section">
+      <div class="logout-item" (click)="logout()">
+        <ion-icon name="log-out-outline" class="logout-icon"></ion-icon>
+        <span class="logout-text">Log Out</span>
+      </div>
+    </div>
+
+    <!-- Version Info -->
+    <div class="version-section">
+      <p class="version-text">StudentHub v2.4.12</p>
+      <p class="made-with">Made with <ion-icon name="heart" class="heart-icon"></ion-icon> for students</p>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <ion-toast
+    [isOpen]="showToast"
+    [message]="toastMessage"
+    [duration]="toastDuration"
+    position="bottom"
+    (didDismiss)="showToast = false">
+  </ion-toast>
+</ion-content>

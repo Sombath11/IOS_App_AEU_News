@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Language</ion-title>
+    <ion-buttons slot="end">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="language-content">
+  <div class="language-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="page-title">Select Language</h1>
+      <p class="page-subtitle">Choose your preferred language</p>
+    </div>
+
+    <!-- Language List -->
+    <div class="language-section">
+      <ion-radio-group [(ngModel)]="selectedLanguage" (ngModelChange)="selectLanguage($event)">
+        <ion-list class="language-list">
+          @for (language of languages; track language.code) {
+            <ion-item class="language-item">
+              <ion-label class="language-label">
+                <div class="language-info">
+                  <span class="language-flag">{{ language.flag }}</span>
+                  <div class="language-names">
+                    <span class="language-name">{{ language.name }}</span>
+                    @if (language.name !== language.nativeName) {
+                      <span class="language-native">{{ language.nativeName }}</span>
+                    }
+                  </div>
+                </div>
+              </ion-label>
+              <ion-radio 
+                [value]="language.code" 
+                slot="end"
+                class="language-radio">
+              </ion-radio>
+            </ion-item>
+          }
+        </ion-list>
+      </ion-radio-group>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <ion-icon name="language-outline" class="info-icon"></ion-icon>
+      <p class="info-text">
+        Some translations may be in progress. Please check back later for updates.
+      </p>
+    </div>
+  </div>
+</ion-content>

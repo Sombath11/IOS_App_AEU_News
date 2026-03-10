@@ -1,0 +1,330 @@
+.home-header {
+  --background: #1152d4;
+  --border-width: 0;
+}
+ion-toolbar {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 56px;
+} 
+.logo-container {
+  width: 35px;
+  height: auto;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+}
+.app-title span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+.icon-btn {
+  --color: #fff;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  ion-icon{
+    font-size: 24px;  
+  }
+}
+.notification-btn {
+  position: relative;
+}
+.notification-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 10px;
+  height: 10px;
+  background: #ff444f;
+  border-radius: 50%;
+  border: 2px solid #1152d4;
+}
+.home-content {
+  --background: #f8f9fa;
+}
+.welcome-section {
+  padding: 24px 20px 12px;
+}
+.welcome-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px;
+}
+.welcome-subtitle {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+}
+.featured-section {
+  padding: 16px 20px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+.see-all-btn {
+  --color: #1152d4;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: none;
+  height: auto;
+  padding: 0;
+}
+.featured-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+.featured-slider::-webkit-scrollbar {
+  display: none;
+}
+.featured-card {
+  flex: 0 0 85%;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  height: 220px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+.featured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.5) 50%,
+    transparent
+  );
+  padding: 80px 16px 16px;
+  color: #fff;
+}
+.featured-chip {
+  --background: #1152d4;
+  --color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  height: 24px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
+.featured-chip.sports {
+  --background: #f35325;
+}
+.featured-chip.academic {
+  --background: #1152d4;
+}
+.featured-chip.featured {
+  --background: #81bc06;
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.3;
+}
+.card-description {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+.quick-actions-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 20px;
+  background: #fff;
+  margin: 16px 20px;
+  border-radius: 16px;
+}
+.quick-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.action-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: #e8ecff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action-icon {
+  font-size: 26px;
+  color: #1152d4;
+}
+.action-label {
+  font-size: 13px;
+  color: #1a1a2e;
+  font-weight: 500;
+}
+.latest-section {
+  padding: 0 20px 20px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.filter-btn {
+  --color: #6c757d;
+  --padding-start: 8px;
+  --padding-end: 8px;
+}
+.category-filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 5px 0 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.category-filters::-webkit-scrollbar {
+  display: none;
+}
+ion-chip {
+  --background: #e4e9f2;
+  --color: #4a5568;
+  font-size: 14px;
+  font-weight: 600;
+  height: 40px;
+  border-radius: 20px;
+  white-space: nowrap;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+ion-chip.active {
+  --background: #1152d4;
+  --color: #fff;
+  font-weight: 700;
+}
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.news-card {
+  display: flex;
+  gap: 16px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.news-card:active {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.news-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.news-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.news-category-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.news-category-label.academic {
+  color: #1152d4;
+}
+.news-category-label.campus-news {
+  color: #2e7d32;
+}
+.news-category-label.sports {
+  color: #f35325;
+}
+.news-category-label.featured {
+  color: #81bc06;
+}
+.news-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+}
+.news-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #adb5bd;
+  margin: 0;
+}
+.news-time ion-icon {
+  font-size: 12px;
+}
+.view-all-news-btn {
+  --background: transparent;
+  --border-color: #e0e0e0;
+  --color: #1152d4;
+  --border-radius: 12px;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 16px;
+}

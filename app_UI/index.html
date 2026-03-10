@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+    <title>News Tabs</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 40px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 15px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: #e5e7eb;
+      color: #374151;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .tab:hover {
+      background-color: #d1d5db;
+    }
+
+    .tab.active {
+      background-color: #2563eb;
+      color: white;
+    }
+  </style>
+  <body>
+    <div class="tabs"> 
+      <button class="tab active">All News</button>
+      <button class="tab">Academic</button>
+      <button class="tab">Sports</button>
+      <button class="tab">Campus News</button>
+    </div>
+  </body>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelector(".active").classList.remove("active");
+            tab.classList.add("active");
+        });
+    });
+</script>
+</html>

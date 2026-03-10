@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notification Preferences</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="savePreferences()" class="save-btn">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="notification-content">
+  <div class="notification-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="page-title">Notification Preferences</h1>
+      <p class="page-subtitle">Manage how you receive notifications</p>
+    </div>
+
+    <!-- Email Notifications -->
+    <div class="notification-section">
+      <div class="section-header">
+        <ion-icon name="mail-outline" class="section-icon email-icon"></ion-icon>
+        <div class="section-info">
+          <h2 class="section-title">Email Notifications</h2>
+          <p class="section-description">Receive updates via email</p>
+        </div>
+        <ion-toggle [(ngModel)]="emailNotifications" class="section-toggle"></ion-toggle>
+      </div>
+
+      @if (emailNotifications) {
+        <div class="subsection">
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Event Reminders</h3>
+              <p>Get reminded about upcoming events</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="emailEventReminders" slot="end"></ion-toggle>
+          </ion-item>
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Registration Confirmations</h3>
+              <p>Confirm your event registrations</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="emailRegistrationConfirmations" slot="end"></ion-toggle>
+          </ion-item>
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Weekly Digest</h3>
+              <p>Summary of upcoming events weekly</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="emailWeeklyDigest" slot="end"></ion-toggle>
+          </ion-item>
+        </div>
+      }
+    </div>
+
+    <!-- Push Notifications -->
+    <div class="notification-section">
+      <div class="section-header">
+        <ion-icon name="push-outline" class="section-icon push-icon"></ion-icon>
+        <div class="section-info">
+          <h2 class="section-title">Push Notifications</h2>
+          <p>Instant alerts on your device</p>
+        </div>
+        <ion-toggle [(ngModel)]="pushNotifications" class="section-toggle"></ion-toggle>
+      </div>
+
+      @if (pushNotifications) {
+        <div class="subsection">
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Event Alerts</h3>
+              <p>Real-time event updates</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="pushEventAlerts" slot="end"></ion-toggle>
+          </ion-item>
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Announcements</h3>
+              <p>Important university announcements</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="pushAnnouncements" slot="end"></ion-toggle>
+          </ion-item>
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Deadline Reminders</h3>
+              <p>Never miss important deadlines</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="pushDeadlineReminders" slot="end"></ion-toggle>
+          </ion-item>
+        </div>
+      }
+    </div>
+
+    <!-- SMS Notifications -->
+    <div class="notification-section">
+      <div class="section-header">
+        <ion-icon name="chatbubble-outline" class="section-icon sms-icon"></ion-icon>
+        <div class="section-info">
+          <h2 class="section-title">SMS Notifications</h2>
+          <p>Text message alerts</p>
+        </div>
+        <ion-toggle [(ngModel)]="smsNotifications" class="section-toggle"></ion-toggle>
+      </div>
+
+      @if (smsNotifications) {
+        <div class="subsection">
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Event Reminders</h3>
+              <p>SMS reminders for events</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="smsEventReminders" slot="end"></ion-toggle>
+          </ion-item>
+          <ion-item class="setting-item">
+            <ion-label>
+              <h3>Urgent Alerts</h3>
+              <p>Critical notifications only</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="smsUrgentAlerts" slot="end"></ion-toggle>
+          </ion-item>
+        </div>
+      }
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions-section">
+      <ion-button expand="block" fill="outline" class="disable-all-btn" (click)="disableAll()">
+        <ion-icon name="notifications-off-outline" slot="start"></ion-icon>
+        Disable All Notifications
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
