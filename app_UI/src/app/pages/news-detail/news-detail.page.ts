@@ -97,14 +97,11 @@ export class NewsDetailPage implements OnInit {
   }
 
   ngOnInit() {
-    // Get article ID from route
     this.articleId = this.route.snapshot.params['id'];
-    console.log('Article ID from route:', this.articleId);
-    
+
     if (this.articleId) {
       this.loadArticle(this.articleId);
     } else {
-      console.error('No article ID provided');
       this.loading = false;
       this.article.title = 'No Article Selected';
       this.article.content = 'Please select an article to view.';
@@ -113,29 +110,20 @@ export class NewsDetailPage implements OnInit {
 
   loadArticle(id: number) {
     this.loading = true;
-    console.log('Loading article ID:', id);
-    
-    // Check if user is authenticated
+
     const token = localStorage.getItem('auth_token');
     if (!token) {
-      console.warn('No authentication token - showing demo article');
       this.loadDemoArticle();
       return;
     }
-    
-    // Fetch from Laravel API
+
     this.http.get<any>(`${environment.apiUrl}/news/${id}`).subscribe({
       next: (response) => {
-        console.log('API Response:', response);
-        
-        // Handle Laravel API response structure (data is in 'news' property)
         const news = response.news || response.data || response;
-        console.log('News object:', news);
-        
-        // Safely get content field with fallback
+
         const content = news?.content || news?.description || news?.body || 'No content available for this article.';
         const title = news?.title || 'Untitled Article';
-        
+
         this.article = {
           id: news?.id || id,
           title: title,
@@ -150,17 +138,13 @@ export class NewsDetailPage implements OnInit {
           readingTime: this.calculateReadingTime(content),
           tags: news?.category ? [news.category] : [],
         };
-        
-        console.log('Article loaded:', this.article);
+
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading article:', error);
         this.loading = false;
-        
-        // If 401 or 404, show demo article instead
+
         if (error.status === 401 || error.status === 404) {
-          console.log('Showing demo article');
           this.loadDemoArticle();
         } else {
           this.article = {
@@ -236,7 +220,6 @@ The program is now accepting applications for Semester 2, 2026. Interested stude
   }
 
   shareArticle() {
-    console.log('Share article');
   }
 
   bookmarkArticle() {

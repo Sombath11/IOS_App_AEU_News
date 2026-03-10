@@ -26,53 +26,34 @@ export class ApiInterceptor implements HttpInterceptor {
 
     // Get token from localStorage
     const token = localStorage.getItem(TOKEN_KEY);
-    
-    console.log('🔐 INTERCEPTOR CALLED');
-    console.log('  Request URL:', req.url);
-    console.log('  Token exists:', !!token);
-    console.log('  Token value:', token ? token.substring(0, 30) + '...' : 'NONE');
-    console.log('  Request headers before:', req.headers.keys().join(', '));
 
     // Prepare headers
     let newHeaders = req.headers;
     newHeaders = newHeaders.set('Accept', 'application/json');
     newHeaders = newHeaders.set('Content-Type', 'application/json');
-    
-    // CRITICAL: Add Authorization header if token exists
+
+    // Add Authorization header if token exists
     if (token) {
       newHeaders = newHeaders.set('Authorization', `Bearer ${token}`);
-      console.log('  ✅ Authorization header ADDED');
-    } else {
-      console.log('  ⚠️ NO TOKEN - not adding Authorization');
     }
 
     // Clone request with new headers
     const authReq = req.clone({ headers: newHeaders });
-    
-    console.log('  Request headers after:', authReq.headers.keys().join(', '));
-    console.log('  Authorization in cloned request:', authReq.headers.get('Authorization') ? 'PRESENT' : 'MISSING');
 
     // Handle response
     return next.handle(authReq).pipe(
       tap((event) => {
-        if (event instanceof HttpResponse) {
-          console.log('✅ Response success:', event.status, event.url);
+        if (event instanceof HttpResponse && event.status >= 200 && event.status < 300) {
+          // Successful response
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error('❌ INTERCEPTOR ERROR');
-        console.error('  Status:', error.status);
-        console.error('  URL:', error.url);
-        console.error('  Error:', error.error);
-        
         if (error.status === 401) {
-          console.error('  → Unauthorized: Token invalid or expired');
-          console.error('  → Token in localStorage:', localStorage.getItem(TOKEN_KEY) ? 'EXISTS' : 'MISSING');
+          // Unauthorized: Token invalid or expired
         }
         if (error.status === 0) {
-          console.error('  → Network error: Server not reachable');
+          // Network error: Server not reachable
         }
-
         return throwError(() => error);
       })
     );
@@ -84,16 +65,13 @@ export class ApiInterceptor implements HttpInterceptor {
  */
 export function setAuthToken(token: string): void {
   localStorage.setItem(TOKEN_KEY, token);
-  console.log('💾 Token stored in localStorage:', token.substring(0, 20) + '...');
 }
 
 /**
  * Get authentication token
  */
 export function getAuthToken(): string | null {
-  const token = localStorage.getItem(TOKEN_KEY);
-  console.log('📥 Token retrieved from localStorage:', token ? token.substring(0, 20) + '...' : 'NONE');
-  return token;
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 /**
@@ -101,5 +79,4 @@ export function getAuthToken(): string | null {
  */
 export function removeAuthToken(): void {
   localStorage.removeItem(TOKEN_KEY);
-  console.log('🗑️ Token removed from localStorage');
 }

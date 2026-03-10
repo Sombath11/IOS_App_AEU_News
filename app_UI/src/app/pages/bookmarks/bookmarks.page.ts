@@ -101,7 +101,6 @@ export class BookmarksPage {
   }
 
   viewBookmark(bookmark: Bookmark) {
-    console.log('View bookmark:', bookmark);
     if (bookmark.type === 'news') {
       this.router.navigate(['/news-detail', bookmark.id]);
     } else if (bookmark.type === 'event') {

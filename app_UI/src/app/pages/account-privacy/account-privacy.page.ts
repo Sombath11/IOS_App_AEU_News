@@ -151,7 +151,6 @@ export class AccountPrivacyPage {
           role: 'destructive',
           handler: () => {
             // Implement account deletion logic
-            console.log('Account deleted');
           },
         },
       ],

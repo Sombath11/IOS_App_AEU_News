@@ -122,7 +122,6 @@ export class HomePage implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading featured news:', error);
         this.loading = false;
       },
     });
@@ -141,7 +140,7 @@ export class HomePage implements OnInit {
         this.filteredNews = this.latestNews;
       },
       error: (error) => {
-        console.error('Error loading latest news:', error);
+        // Silent error handling
       },
     });
   }
@@ -183,7 +182,7 @@ export class HomePage implements OnInit {
   }
 
   viewAllNews() {
-    console.log('View all news');
+    this.router.navigate(['/tabs/news']);
   }
 
   navigateTo(page: string) {

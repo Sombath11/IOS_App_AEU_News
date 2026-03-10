@@ -19,7 +19,6 @@ import {
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { EventService, Event } from '../services/event.service';
 import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service';
 import { addIcons } from 'ionicons';
 import { logInOutline, calendarOutline, locationOutline, personOutline, logOutOutline } from 'ionicons/icons';
 import { environment } from '../../environments/environment';
@@ -84,7 +83,6 @@ export class Tab1Page implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        console.error('Failed to load events:', err);
         this.error = 'Failed to load events. Make sure Laravel API is running.';
         this.loading = false;
       },

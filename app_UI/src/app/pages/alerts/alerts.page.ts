@@ -70,7 +70,7 @@ export class AlertsPage implements OnInit {
   private authService = inject(AuthService);
 
   alerts: Alert[] = [];
-  isLoading = true; // Start with loading true
+  isLoading = true;
   unreadCount = 0;
   isLoggedIn = false;
   hasError = false;
@@ -98,44 +98,25 @@ export class AlertsPage implements OnInit {
   }
 
   checkAuth() {
-    // Direct localStorage check - most reliable
     const token = localStorage.getItem('auth_token');
     const user = this.authService.getCurrentUser();
-    
-    console.log('🔍 AUTH CHECK');
-    console.log('  Token in localStorage:', token ? '✅ EXISTS (' + token.substring(0, 20) + '...)' : '❌ MISSING');
-    console.log('  Current user:', user ? '✅ ' + user.name : '❌ null');
-    console.log('  authService.isAuthenticated():', this.authService.isAuthenticated());
-    
-    // Use direct check instead of service
+
     this.isLoggedIn = token !== null && token !== undefined && token !== '';
-    
-    console.log('  → isLoggedIn:', this.isLoggedIn);
 
     if (this.isLoggedIn) {
       this.loadNotifications();
     } else {
       this.isLoading = false;
       this.hasError = false;
-      console.log('  → Not logged in, showing login prompt');
     }
   }
 
   async loadNotifications() {
     this.isLoading = true;
     this.hasError = false;
-    
-    const token = localStorage.getItem('auth_token');
-    console.log('\n📡 LOADING NOTIFICATIONS');
-    console.log('  Token:', token ? token.substring(0, 20) + '...' : 'NONE');
-    console.log('  API URL:', 'http://localhost:8888/api/notifications');
 
     this.notificationService.getNotifications().subscribe({
       next: (data) => {
-        console.log('\n✅ SUCCESS');
-        console.log('  Notifications count:', data.notifications.data.length);
-        console.log('  Unread count:', data.unread_count);
-        
         this.alerts = data.notifications.data.map(notification => ({
           id: notification.id,
           title: notification.title,
@@ -150,19 +131,11 @@ export class AlertsPage implements OnInit {
         }));
         this.unreadCount = data.unread_count;
         this.isLoading = false;
-        
-        console.log('  Mapped alerts:', this.alerts.length);
-        console.log('  Loading complete!');
       },
       error: (error) => {
-        console.error('\n❌ ERROR LOADING NOTIFICATIONS');
-        console.error('  Status:', error.status);
-        console.error('  Message:', error.message);
-        console.error('  Error:', error.error);
-        
         this.isLoading = false;
         this.hasError = true;
-        
+
         if (error.status === 401) {
           this.isLoggedIn = false;
           this.showToast('Session expired. Please login again.', 'danger');
@@ -241,7 +214,7 @@ export class AlertsPage implements OnInit {
 
     if (alert.notification) {
       this.notificationService.markAsRead(alert.id).subscribe({
-        error: (error) => console.error('Error marking as read:', error)
+        error: (error) => { /* Silent error handling */ }
       });
     }
 

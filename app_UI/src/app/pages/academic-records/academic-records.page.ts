@@ -114,11 +114,9 @@ export class AcademicRecordsPage {
   }
 
   viewSemesterDetails(semester: Semester) {
-    console.log('View semester:', semester);
   }
 
   downloadTranscript(transcript: Transcript) {
-    console.log('Download transcript:', transcript);
   }
 
   getGpaClass(gpa: number): string {

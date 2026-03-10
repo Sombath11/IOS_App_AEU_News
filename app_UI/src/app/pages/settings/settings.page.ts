@@ -88,7 +88,6 @@ export class SettingsPage implements OnInit {
 
   onDarkModeToggle(event: CustomEvent) {
     const isDark = (event.target as HTMLIonToggleElement).checked;
-    console.log('Dark mode toggled:', isDark);
     this.themeService.setDarkMode(isDark);
     this.isDarkMode = isDark;
     this.showMessage(isDark ? 'Dark mode enabled' : 'Dark mode disabled');

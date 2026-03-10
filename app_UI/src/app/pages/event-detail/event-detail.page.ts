@@ -108,25 +108,17 @@ export class EventDetailPage implements OnInit {
 
   loadEvent(id: number) {
     this.loading = true;
-    console.log('Loading event ID:', id);
-    
-    // Check if user is authenticated
+
     const token = localStorage.getItem('auth_token');
     if (!token) {
-      console.warn('No authentication token - showing demo event data');
       this.loadDemoEvent();
       return;
     }
-    
-    // Fetch from Laravel API
+
     this.http.get<any>(`${environment.apiUrl}/events/${id}`).subscribe({
       next: (response) => {
-        console.log('API Response:', response);
-        
-        // Handle Laravel API response structure (data is in 'event' property)
         const eventData = response.event || response.data || response;
-        console.log('Event object:', eventData);
-        
+
         this.event = {
           id: eventData?.id || id,
           title: eventData?.title || 'Untitled Event',
@@ -142,16 +134,12 @@ export class EventDetailPage implements OnInit {
           image: eventData?.image_url || eventData?.image || '',
           speakers: eventData?.speakers || []
         };
-        console.log('Event loaded:', this.event);
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading event:', error);
         this.loading = false;
-        
-        // If 401 or 404, show demo data instead
+
         if (error.status === 401 || error.status === 404) {
-          console.log('Showing demo event data');
           this.loadDemoEvent();
         } else {
           this.event = {
@@ -227,7 +215,6 @@ Highlights include keynote speeches from global tech pioneers, interactive works
   }
 
   shareEvent() {
-    console.log('Share event');
   }
 
   registerNow() {

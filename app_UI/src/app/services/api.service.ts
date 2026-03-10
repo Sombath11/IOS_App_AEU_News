@@ -63,7 +63,7 @@ export class ApiService {
       errorMessage = error.error?.message || `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
 
-    console.error('API Error:', error);
+    console.error('API Error:', errorMessage);
     return throwError(() => new Error(errorMessage));
   }
 }

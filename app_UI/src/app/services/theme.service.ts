@@ -55,15 +55,12 @@ export class ThemeService {
    */
   private applyDarkMode(isDark: boolean): void {
     const html = document.documentElement;
-    console.log('Applying dark mode:', isDark, 'to element:', html);
     if (isDark) {
       html.classList.add('dark-theme');
       html.setAttribute('data-theme', 'dark');
-      console.log('Dark theme class added, current classes:', html.classList);
     } else {
       html.classList.remove('dark-theme');
       html.removeAttribute('data-theme');
-      console.log('Dark theme class removed, current classes:', html.classList);
     }
   }
 }

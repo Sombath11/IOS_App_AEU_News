@@ -145,22 +145,17 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    // Load saved avatar from localStorage if exists
     const savedAvatar = localStorage.getItem('user_avatar');
     if (savedAvatar) {
       this.student.avatar = savedAvatar;
-      console.log('Loaded saved avatar from localStorage');
     }
-    
-    // Check if user is authenticated BEFORE calling API
+
     if (!this.authService.isAuthenticated()) {
-      console.log('User not authenticated - showing guest mode');
-      // User not logged in - use default/demo data
       this.student = {
         name: 'Guest User',
         studentId: 'N/A',
         major: 'Please login to view your profile',
-        avatar: this.student.avatar, // Keep the saved avatar if exists
+        avatar: this.student.avatar,
         gpa: 'N/A',
         level: 'N/A',
         credits: 0,
@@ -168,8 +163,7 @@ export class ProfilePage implements OnInit {
       this.loading = false;
       return;
     }
-    
-    // Only load from API if authenticated
+
     this.loadUserProfile();
   }
 
@@ -209,10 +203,8 @@ export class ProfilePage implements OnInit {
         this.loading = false;
       },
       error: (error) => {
-        console.error('Error loading user profile:', error);
         this.loading = false;
-        
-        // If 401 Unauthorized, use cached user data or default data
+
         const cachedUser = this.authService.getCurrentUser();
         if (cachedUser) {
           this.student = {
@@ -225,7 +217,6 @@ export class ProfilePage implements OnInit {
             credits: 120,
           };
         } else {
-          // No cached user - show default data
           this.student = {
             name: 'Guest User',
             studentId: 'N/A',
@@ -315,54 +306,38 @@ export class ProfilePage implements OnInit {
   }
 
   handleImageFile(file: File) {
-    console.log('=== HANDLING IMAGE FILE ===');
-    console.log('File name:', file.name);
-    console.log('File type:', file.type);
-    console.log('File size:', file.size);
-    
-    // Check if file is an image
     if (!file.type.startsWith('image/')) {
-      console.error('Not an image file!');
       this.showAlert('Error', 'Please select an image file');
       return;
     }
-    
+
     const reader = new FileReader();
     reader.onload = (e: any) => {
       const imageBase64 = e.target?.result;
-      console.log('=== FILE READER COMPLETE ===');
-      console.log('Base64 length:', imageBase64?.length);
-      
+
       if (imageBase64) {
-        // Create a File object from the base64
         const blob = this.base64ToBlob(imageBase64, file.type);
         const newFile = new File([blob], file.name, { type: file.type });
-        
-        // Create a proper event object for the cropper
+
         const event = {
           target: {
             files: [newFile]
           }
         };
-        
-        console.log('Setting imageChangedEvent...');
+
         this.imageChangedEvent = event;
-        
-        // Open modal after a delay to ensure change detection
+
         setTimeout(() => {
           this.isCropModalOpen = true;
-          console.log('Crop modal opened');
         }, 100);
       }
     };
-    
+
     reader.onerror = (error) => {
-      console.error('=== FILE READER ERROR ===', error);
       this.showAlert('Error', 'Failed to load image. Please try again.');
     };
-    
+
     reader.readAsDataURL(file);
-    console.log('FileReader started');
   }
   
   // Helper method to convert base64 to Blob
@@ -377,47 +352,29 @@ export class ProfilePage implements OnInit {
   }
 
   imageCropped(event: ImageCroppedEvent) {
-    console.log('=== IMAGE CROPPED EVENT FIRED ===');
-    console.log('Event:', event);
-    console.log('Base64:', event.base64?.substring(0, 50) + '...');
-    console.log('Blob:', event.blob);
-    console.log('Base64 length:', event.base64?.length);
-    
-    // Get the cropped image in base64 format
     this.croppedImage = event.base64 || '';
-    console.log('Cropped image set, length:', this.croppedImage?.length);
   }
 
   imageLoaded() {
-    console.log('=== IMAGE LOADED IN CROPPER ===');
   }
 
   cropperReady(sourceImageDimensions: any) {
-    console.log('=== CROPPER READY ===');
-    console.log('Source image dimensions:', sourceImageDimensions);
   }
 
   loadImageFailed() {
-    console.error('=== LOAD IMAGE FAILED ===');
     this.showAlert('Error', 'Failed to load image. Please try a different image.');
   }
 
   rotateLeft() {
-    // Note: Rotation requires additional setup with image-cropper
-    // For now, this is a placeholder
-    console.log('Rotate left - requires cropper instance access');
   }
 
   rotateRight() {
-    console.log('Rotate right - requires cropper instance access');
   }
 
   flipHorizontal() {
-    console.log('Flip horizontal - requires cropper instance access');
   }
 
   flipVertical() {
-    console.log('Flip vertical - requires cropper instance access');
   }
 
   onSegmentChange(event: any) {
@@ -431,33 +388,20 @@ export class ProfilePage implements OnInit {
   }
 
   async saveCrop() {
-    console.log('Save crop clicked');
-    console.log('Cropped image exists:', !!this.croppedImage);
-    
-    // Use the cropped image from the event
     if (this.croppedImage) {
-      // Update the student avatar with the cropped image
       this.student.avatar = this.croppedImage;
-      
-      // Save to localStorage for persistence
       localStorage.setItem('user_avatar', this.croppedImage);
-      
-      console.log('Avatar saved successfully, length:', this.croppedImage.length);
       this.showAlert('Success', 'Profile picture updated successfully!');
     } else {
-      console.error('No cropped image available');
       this.showAlert('Error', 'No image was cropped. Please make sure to crop the image before saving.');
     }
-    
-    // Close the modal and reset
+
     this.isCropModalOpen = false;
     this.imageChangedEvent = '';
     this.croppedImage = '';
   }
 
   uploadAvatar() {
-    // Here you would upload the image to your backend
-    console.log('Uploading avatar:', this.student.avatar);
   }
 
   async showAlert(header: string, message: string) {

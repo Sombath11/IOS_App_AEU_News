@@ -89,15 +89,15 @@ export class LoginPage {
       next: (response) => {
         this.isLoading = false;
 
-        // Store token
-        const token = response.access_token || response.token;
+        // Store token (Laravel Sanctum returns 'token')
+        const token = response.token || response.access_token;
         if (token) {
           this.authService.setToken(token);
           this.authService.cacheCurrentUser(response.user);
+          this.router.navigate(['/tabs/home']);
+        } else {
+          this.showAlert('Login Failed', 'Invalid response from server. Please try again.');
         }
-
-        // Navigate to tabs
-        this.router.navigate(['/tabs']);
       },
       error: (error) => {
         this.isLoading = false;
@@ -120,11 +120,9 @@ export class LoginPage {
   }
 
   loginWithGoogle() {
-    console.log('Login with Google');
   }
 
   loginWithMicrosoft() {
-    console.log('Login with Microsoft');
   }
 
   async showAlert(header: string, message: string) {
