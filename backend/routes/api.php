@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NotificationController;
@@ -14,6 +15,13 @@ Route::post('/auth/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'me']);
+    Route::post('/user/update', [AuthController::class, 'updateProfile']);
+
+    // Bookmark routes
+    Route::get('/bookmarks', [BookmarkController::class, 'index']);
+    Route::post('/bookmarks/toggle', [BookmarkController::class, 'toggle']);
+    Route::post('/bookmarks/check', [BookmarkController::class, 'check']);
+    Route::delete('/bookmarks/{id}', [BookmarkController::class, 'destroy']);
 
     // Notification routes
     Route::get('/notifications', [NotificationController::class, 'index']);

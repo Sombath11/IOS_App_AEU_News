@@ -18,6 +18,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { addIcons } from 'ionicons';
+import { environment } from '../../../environments/environment';
 import {
   chevronBackOutline,
   ellipsisVertical,
@@ -191,11 +192,16 @@ export class ProfilePage implements OnInit {
 
     this.authService.me().subscribe({
       next: (user: User) => {
+        // Get avatar URL from backend or use default
+        const avatarUrl = user.avatar 
+          ? `${environment.apiUrl.replace('/api', '')}/storage/${user.avatar}`
+          : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400';
+
         this.student = {
           name: user.name,
           studentId: user.student_id || 'N/A',
           major: 'Computer Science',
-          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+          avatar: avatarUrl,
           gpa: '3.8',
           level: 'Year 3',
           credits: 120,
@@ -389,9 +395,39 @@ export class ProfilePage implements OnInit {
 
   async saveCrop() {
     if (this.croppedImage) {
+      // First update local state
       this.student.avatar = this.croppedImage;
       localStorage.setItem('user_avatar', this.croppedImage);
-      this.showAlert('Success', 'Profile picture updated successfully!');
+
+      // Upload to backend if authenticated
+      if (this.authService.isAuthenticated()) {
+        try {
+          const blob = this.base64ToBlob(this.croppedImage, 'image/png');
+          const file = new File([blob], 'avatar.png', { type: 'image/png' });
+          const formData = new FormData();
+          formData.append('avatar', file);
+
+          this.authService.updateProfile(formData).subscribe({
+            next: (response) => {
+              // Update cached user with new avatar URL
+              if (response.user) {
+                this.authService.cacheCurrentUser(response.user);
+                this.student.name = response.user.name;
+              }
+              this.showAlert('Success', 'Profile picture updated successfully!');
+            },
+            error: (error) => {
+              console.error('Avatar upload error:', error);
+              this.showAlert('Warning', 'Avatar saved locally but failed to upload to server.');
+            }
+          });
+        } catch (error) {
+          console.error('Upload error:', error);
+          this.showAlert('Error', 'Failed to process image. Please try again.');
+        }
+      } else {
+        this.showAlert('Success', 'Profile picture updated successfully!');
+      }
     } else {
       this.showAlert('Error', 'No image was cropped. Please make sure to crop the image before saving.');
     }

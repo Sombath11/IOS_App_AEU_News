@@ -24,8 +24,13 @@ export class ApiService {
   /**
    * POST request
    */
-  post<T>(endpoint: string, body: any): Observable<T> {
-    return this.http.post<T>(`${this.apiUrl}/${endpoint}`, body);
+  post<T>(endpoint: string, body: any, useFormData: boolean = false): Observable<T> {
+    if (useFormData) {
+      return this.http.post<T>(`${this.apiUrl}/${endpoint}`, body);
+    }
+    return this.http.post<T>(`${this.apiUrl}/${endpoint}`, body, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   /**

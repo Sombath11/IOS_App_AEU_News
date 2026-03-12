@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonContent,
@@ -7,9 +7,9 @@ import {
   IonTitle,
   IonButtons,
   IonButton,
-  IonIcon
+  IonIcon,
+  IonSpinner
 } from '@ionic/angular/standalone';
-import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
 import {
   chevronBackOutline,
@@ -19,15 +19,28 @@ import {
   documentTextOutline,
   chevronForward
 } from 'ionicons/icons';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 
-interface Bookmark {
+interface BookmarkData {
   id: number;
   title: string;
+  content?: string;
+  description?: string;
+  category?: string;
+  image_url?: string;
+}
+
+interface BookmarkItem {
+  id: number;
+  type: 'news' | 'event';
+  data: BookmarkData;
+  created_at: string;
+  icon: string;
   excerpt: string;
   category: string;
-  date: string;
-  type: 'news' | 'event' | 'article';
-  icon: string;
+  displayDate: string;
 }
 
 @Component({
@@ -43,43 +56,16 @@ interface Bookmark {
     IonButtons,
     IonButton,
     IonIcon,
-    CommonModule,
+    IonSpinner,
   ],
 })
-export class BookmarksPage {
+export class BookmarksPage implements OnInit {
   private router = inject(Router);
+  private http = inject(HttpClient);
+  private authService = inject(AuthService);
 
-  bookmarks: Bookmark[] = [
-    {
-      id: 1,
-      title: 'AEU Wins National Innovation Award 2025',
-      excerpt:
-        'Our university has been recognized for excellence in research...',
-      category: 'News',
-      date: 'Feb 18, 2025',
-      type: 'news',
-      icon: 'newspaper-outline',
-    },
-    {
-      id: 2,
-      title: 'Annual Tech Symposium 2024',
-      excerpt: 'Join us for the biggest technology event of the year...',
-      category: 'Event',
-      date: 'Feb 15, 2025',
-      type: 'event',
-      icon: 'calendar-outline',
-    },
-    {
-      id: 3,
-      title: 'Research Paper: AI in Education',
-      excerpt:
-        'Exploring the impact of artificial intelligence on modern education...',
-      category: 'Article',
-      date: 'Feb 10, 2025',
-      type: 'article',
-      icon: 'document-text-outline',
-    },
-  ];
+  bookmarks: BookmarkItem[] = [];
+  loading: boolean = true;
 
   constructor() {
     addIcons({
@@ -92,6 +78,61 @@ export class BookmarksPage {
     });
   }
 
+  ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.loadBookmarks();
+    } else {
+      this.loading = false;
+      this.bookmarks = [];
+    }
+  }
+
+  loadBookmarks() {
+    this.loading = true;
+    const token = localStorage.getItem('auth_token');
+
+    if (!token) {
+      this.loading = false;
+      this.bookmarks = [];
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    });
+
+    this.http.get<{ bookmarks: BookmarkItem[] }>(`${environment.apiUrl}/bookmarks`, { headers }).subscribe({
+      next: (response) => {
+        this.bookmarks = response.bookmarks.map(b => ({
+          ...b,
+          icon: b.type === 'news' ? 'newspaper-outline' : 'calendar-outline',
+          excerpt: this.getExcerpt(b.data.content || b.data.description || ''),
+          category: b.data.category || b.type.toUpperCase(),
+          displayDate: this.formatDate(b.created_at)
+        }));
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Failed to load bookmarks:', error);
+        this.loading = false;
+        this.bookmarks = [];
+      }
+    });
+  }
+
+  getExcerpt(text: string): string {
+    if (!text) return '';
+    const cleanText = text.replace(/<[^>]*>/g, '');
+    return cleanText.length > 100 ? cleanText.substring(0, 100) + '...' : cleanText;
+  }
+
+  formatDate(dateString: string): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
   goBack() {
     window.history.back();
   }
@@ -100,11 +141,11 @@ export class BookmarksPage {
     this.router.navigate([`/tabs/${page}`]);
   }
 
-  viewBookmark(bookmark: Bookmark) {
+  viewBookmark(bookmark: BookmarkItem) {
     if (bookmark.type === 'news') {
-      this.router.navigate(['/news-detail', bookmark.id]);
+      this.router.navigate(['/news-detail', bookmark.data.id]);
     } else if (bookmark.type === 'event') {
-      this.router.navigate(['/event-detail', bookmark.id]);
+      this.router.navigate(['/event-detail', bookmark.data.id]);
     }
   }
 

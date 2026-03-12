@@ -21,6 +21,7 @@ export interface User {
   name: string;
   email: string;
   student_id?: string;
+  avatar?: string;
   email_verified_at?: string;
   created_at: string;
   updated_at: string;
@@ -114,6 +115,13 @@ export class AuthService {
       }
     }
     return null;
+  }
+
+  /**
+   * Update user profile (name and avatar)
+   */
+  updateProfile(formData: FormData): Observable<{ user: User; avatar_url?: string }> {
+    return this.api.post<{ user: User; avatar_url?: string }>('user/update', formData, true);
   }
 
   /**

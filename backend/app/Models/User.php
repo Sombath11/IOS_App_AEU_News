@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'student_id',
+        'avatar',
     ];
 
     /**
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function eventRegistrations()
     {
         return $this->hasMany(EventRegistration::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
     }
 }

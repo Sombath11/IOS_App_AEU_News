@@ -6,26 +6,29 @@
       </ion-button>
     </ion-buttons>
     <ion-title>My Bookmarks</ion-title>
-    <ion-buttons slot="end"> 
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="bookmarks-content">
   <div class="bookmarks-container">
-    @if (bookmarks.length > 0) {
+    @if (loading) {
+      <div class="loading-state">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Loading bookmarks...</p>
+      </div>
+    } @else if (bookmarks.length > 0) {
       <div class="bookmarks-list">
         @for (bookmark of bookmarks; track bookmark.id) {
           <div class="bookmark-card" (click)="viewBookmark(bookmark)">
-            <div class="bookmark-icon" [ngClass]="bookmark.type">
+            <div class="bookmark-icon" [class]="bookmark.type">
               <ion-icon [name]="bookmark.icon"></ion-icon>
             </div>
             <div class="bookmark-content">
-              <h3 class="bookmark-title">{{ bookmark.title }}</h3>
+              <h3 class="bookmark-title">{{ bookmark.data.title }}</h3>
               <p class="bookmark-excerpt">{{ bookmark.excerpt }}</p>
               <div class="bookmark-meta">
                 <span class="bookmark-category">{{ bookmark.category }}</span>
-                <span class="bookmark-date">{{ bookmark.date }}</span>
+                <span class="bookmark-date">{{ bookmark.displayDate }}</span>
               </div>
             </div>
             <ion-icon name="chevron-forward" class="chevron"></ion-icon>
